@@ -19,6 +19,10 @@ public class Cliente {
 		playerOneState = new TurnPlayerOne(this);
 		playerTwoState = new TurnPlayerTwo(this);
 	}
+	
+	public Cliente(ArrayList<Jugador> _jugadores) {
+		this.jugadores = _jugadores;
+	}
 
 	public void iniciarPartida(String tipoJuego) {
 		//Validar el tipo de juego.
@@ -44,6 +48,16 @@ public class Cliente {
 	
 	public void nextTurn() {
 		activePlayer.nextTurn();
+		
+		for(int i = 0; i < jugadores.size(); i++) {
+			if(i == 0 && this.activePlayer == getPlayerOneState()) {
+				jugadores.get(i).setTurn(true);
+				jugadores.get(i + 1).setTurn(false);
+			}else if(i == 1 && this.activePlayer == getPlayerTwoState()) {
+				jugadores.get(i).setTurn(true);
+				jugadores.get(i - 1).setTurn(false);
+			}
+		}
 	}
 	
 	public State getPlayerOneState() {
@@ -60,5 +74,9 @@ public class Cliente {
 	
 	public State getState() {
 		return this.activePlayer;
+	}
+	
+	public void setJugadores(ArrayList<Jugador> _jugadores) {
+		this.jugadores = _jugadores;
 	}
 }

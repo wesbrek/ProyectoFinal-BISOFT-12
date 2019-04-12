@@ -12,6 +12,12 @@ public class Jugador {
 		
 	}
 	
+	public Jugador(String nombre, String contrasenna, boolean turno) {
+		this.turn = turno;
+		this.name = nombre;
+		this.password = contrasenna;
+	}
+	
 	public Jugador(String nombre, String contrasenna) {
 		this.turn = false;
 		this.name = nombre;
