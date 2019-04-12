@@ -1,5 +1,7 @@
 package cr.ac.ucenfotec.bl;
 
+import cr.ac.ucenfotec.state.State;
+
 public class Jugador {
 	
 	private String name;
@@ -33,7 +35,7 @@ public class Jugador {
 	public String getName() {
 		return this.name;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Jugador [nombre=" + name + ", contrasenna=" + password + "]";

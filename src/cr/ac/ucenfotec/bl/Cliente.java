@@ -2,12 +2,22 @@ package cr.ac.ucenfotec.bl;
 
 import java.util.ArrayList;
 
+import cr.ac.ucenfotec.state.State;
+import cr.ac.ucenfotec.state.TurnPlayerOne;
+import cr.ac.ucenfotec.state.TurnPlayerTwo;
+
 public class Cliente {
 	private Tablero juego;
 	private ArrayList<Jugador> jugadores;
+	private State playerOneState;
+	private State playerTwoState;
+	
+	private State activePlayer = new TurnPlayerOne(this);
 	
 	public Cliente() {
 		jugadores = new ArrayList<Jugador>();
+		playerOneState = new TurnPlayerOne(this);
+		playerTwoState = new TurnPlayerTwo(this);
 	}
 
 	public void iniciarPartida(String tipoJuego) {
@@ -30,5 +40,25 @@ public class Cliente {
 				return true;
 		}
 		return false;
+	}
+	
+	public void nextTurn() {
+		activePlayer.nextTurn();
+	}
+	
+	public State getPlayerOneState() {
+		return playerOneState;
+	}
+	
+	public State getPlayerTwoState() {
+		return playerTwoState;
+	}
+	
+	public void setState(State _state) {
+		this.activePlayer = _state;
+	}
+	
+	public State getState() {
+		return this.activePlayer;
 	}
 }
