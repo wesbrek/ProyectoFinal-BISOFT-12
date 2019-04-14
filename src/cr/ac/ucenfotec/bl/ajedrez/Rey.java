@@ -1,32 +1,52 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
-import cr.ac.ucenfotec.bl.Pieza;
+import cr.ac.ucenfotec.bl.piezas.IPieza;
 
-public class Rey extends Pieza{
+public class Rey implements IPieza {
+	int posX;
+	int posY;
+	boolean color;
 
-	public Rey() {
-		this.name = "K";
-	}
-	
-	public Rey(int posX, int posY) {
-		this.name = "K";
-		this.posX = posX;
-		this.posY = posY;
-	}
-	
-	@Override
-	public void move(int x, int y) {
-		//Verificar movimiento: 1 casilla en cualquier direcci�n
-	}
+    public Rey() {
+    }
 
-	@Override
-	public int getPosX() {
-		return this.posX;
-	}
+    public Rey(int posX, int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
 
-	@Override
-	public int getPosY() {
-		return this.posY;
-	}
+    public Rey(int posX, int posY, boolean color) {
+        this.posX = posX;
+        this.posY = posY;
+        this.color = color;
+    }
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public boolean isColor() {
+        return color;
+    }
+
+    public void setColor(boolean color) {
+        this.color = color;
+    }
+
+    @Override
+	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+		return false;
+	}
 }

@@ -1,21 +1,21 @@
-package cr.ac.ucenfotec.bl.ajedrez;
+package cr.ac.ucenfotec.bl.go;
 
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 
-public class Peon implements IPieza {
+public class PiezaGo implements IPieza {
     int posX;
     int posY;
     boolean color;
 
-    public Peon() {
+    public PiezaGo() {
     }
 
-    public Peon(int posX, int posY) {
+    public PiezaGo(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }
 
-    public Peon(int posX, int posY, boolean color) {
+    public PiezaGo(int posX, int posY, boolean color) {
         this.posX = posX;
         this.posY = posY;
         this.color = color;

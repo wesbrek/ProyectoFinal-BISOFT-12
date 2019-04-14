@@ -1,32 +1,52 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
-import cr.ac.ucenfotec.bl.Pieza;
+import cr.ac.ucenfotec.bl.piezas.IPieza;
 
-public class Alfil extends Pieza {
+public class Alfil implements IPieza {
+	int posX;
+	int posY;
+	boolean color;
 
 	public Alfil() {
-		this.name = "A";
 	}
-	
-	public Alfil(int posX, int posY) {
-		this.name = "A";
+
+    public Alfil(int posX, int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
+
+    public Alfil(int posX, int posY, boolean color) {
 		this.posX = posX;
 		this.posY = posY;
-	}
-	
-	@Override
-	public void move(int x, int y) {
-		//Movimiento 1:  X = n, Y = z.
-		//Movimiento 2:  X = z, Y = n.
+		this.color = color;
 	}
 
-	@Override
 	public int getPosX() {
-		return this.posX;
+		return posX;
 	}
 
-	@Override
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
 	public int getPosY() {
-		return this.posY;
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+    public boolean isColor() {
+        return color;
+    }
+
+    public void setColor(boolean color) {
+        this.color = color;
+    }
+
+    @Override
+	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+		return false;
 	}
 }

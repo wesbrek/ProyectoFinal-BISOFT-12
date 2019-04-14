@@ -1,21 +1,21 @@
-package cr.ac.ucenfotec.bl.ajedrez;
+package cr.ac.ucenfotec.bl.damas;
 
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 
-public class Peon implements IPieza {
+public class PiezaDama implements IPieza {
     int posX;
     int posY;
     boolean color;
 
-    public Peon() {
+    public PiezaDama() {
     }
 
-    public Peon(int posX, int posY) {
+    public PiezaDama(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }
 
-    public Peon(int posX, int posY, boolean color) {
+    public PiezaDama(int posX, int posY, boolean color) {
         this.posX = posX;
         this.posY = posY;
         this.color = color;

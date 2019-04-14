@@ -1,32 +1,52 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
-import cr.ac.ucenfotec.bl.Pieza;
+import cr.ac.ucenfotec.bl.piezas.IPieza;
 
-public class Reina extends Pieza {
+public class Reina implements IPieza {
+	int posX;
+	int posY;
+	boolean color;
 
 	public Reina() {
-		this.name = "Q";
 	}
-	
+
 	public Reina(int posX, int posY) {
-		this.name = "Q";
 		this.posX = posX;
 		this.posY = posY;
 	}
-	
-	@Override
-	public void move(int x, int y) {
-		//Verificar movimiento: n casillas en cualquier direccion.
+
+	public Reina(int posX, int posY, boolean color) {
+		this.posX = posX;
+		this.posY = posY;
+		this.color = color;
 	}
 
-	@Override
-	public int getPosX() {
-		return this.posX;
-	}
+    public int getPosX() {
+        return posX;
+    }
 
-	@Override
-	public int getPosY() {
-		return this.posY;
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public boolean isColor() {
+        return color;
+    }
+
+    public void setColor(boolean color) {
+        this.color = color;
+    }
+
+    @Override
+	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+		return false;
 	}
-	
 }
