@@ -1,34 +1,52 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
-import cr.ac.ucenfotec.bl.Pieza;
+import cr.ac.ucenfotec.bl.piezas.IPieza;
 
-public class Caballo extends Pieza{
+public class Caballo implements IPieza {
+	int posX;
+	int posY;
+	boolean color;
 
-	public Caballo() {
-		this.name = "C";
+    public Caballo() {
+    }
+
+    public Caballo(int posX, int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
+
+    public Caballo(int posX, int posY, boolean color) {
+        this.posX = posX;
+        this.posY = posY;
+        this.color = color;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public boolean isColor() {
+        return color;
+    }
+
+    public void setColor(boolean color) {
+        this.color = color;
+    }
+
+    @Override
+	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+		return false;
 	}
-	
-	public Caballo(int posX, int posY) {
-		this.name = "C";
-		this.posX = posX;
-		this.posY = posY;
-	}
-	
-	@Override
-	public void move(int x, int y) {
-		//Movimiento 1:  X = 1 o -1, Y = 3 0 -3.
-		//Movimiento 2:  X = 3 o -3, Y = 1 0 -1.
-	}
-
-	@Override
-	public int getPosX() {
-		return this.posX;
-	}
-
-	@Override
-	public int getPosY() {
-		return this.posY;
-	}
-
-
 }
