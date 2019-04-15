@@ -91,11 +91,15 @@ public class TableroAjedrez implements ITablero {
 	public String toString() {
 	    String salida = "";
         for(int i = 0; i < casillas.length; i++){
+            salida += "\n---+---+---+---+---+---+---+---+---+\n";
             for(int j = 0; j < casillas.length; j++){
-                salida += casillas[j][i].toString();
+                IPieza tmp = casillas[j][i].getPieza();
+                String p = (casillas[j][i].getPieza() == null) ? "   " : (tmp.isColor()) ? " " + tmp.getSimbolo() + " " : "*" + tmp.getSimbolo() + "*";
+                salida += (j == 0) ? " " + i + " |" + p + "|": "" + p +"|";
             }
-            salida += '\n';
         }
+        salida += "\n---+---+---+---+---+---+---+---+---+";
+        salida += "\n   | a | b | c | d | e | f | g | h";
 
         return salida;
 	}

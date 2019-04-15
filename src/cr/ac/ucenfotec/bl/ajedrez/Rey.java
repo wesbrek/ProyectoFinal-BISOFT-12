@@ -7,6 +7,7 @@ public class Rey implements IPieza {
 	int posX;
 	int posY;
 	boolean color;
+	String simbolo = "K";
 
     public Rey() {
     }
@@ -45,6 +46,10 @@ public class Rey implements IPieza {
     public void setColor(boolean color) {
         this.color = color;
     }
+
+    public String getSimbolo() { return simbolo; }
+
+    public void setSimbolo(String simbolo) { this.simbolo = simbolo; }
 
     @Override
 	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
