@@ -27,3 +27,9 @@ hs_err_pid*
 *.xml
 *.class
 bin/cr/ac/ucenfotec/bl/ajedrez/Alfil.class
+
+# IntelliJ IDEA
+.idea
+*.iml
+out/
+bin/
