@@ -1,5 +1,6 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
+import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 
 public class Torre implements IPieza {
@@ -15,10 +16,10 @@ public class Torre implements IPieza {
 		this.posY = posY;
 	}
 
-	public Torre(int posX, int posY, boolean color) {
+	public Torre(int posX, int posY, ColorPieza color) {
 		this.posX = posX;
 		this.posY = posY;
-		this.color = color;
+		this.color = color.valueOf();
 	}
 
 	public int getPosX() {
@@ -49,4 +50,9 @@ public class Torre implements IPieza {
 	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
 		return false;
 	}
+
+    @Override
+    public String toString() {
+        return "Torre{}";
+    }
 }

@@ -8,6 +8,13 @@ public class Casilla {
     private int posY;
     //private boolean color;
 
+
+    public Casilla() {
+        this.pieza = null;
+        this.posX = 0;
+        this.posY = 0;
+    }
+
     public Casilla(IPieza pieza, int posX, int posY) {
         this.pieza = pieza;
         this.posX = posX;
@@ -20,6 +27,8 @@ public class Casilla {
 
     public void setPieza(IPieza pieza) {
         this.pieza = pieza;
+        this.posX = pieza.getPosX();
+        this.posY = pieza.getPosY();
     }
 
     public int getPosX() {
@@ -36,5 +45,17 @@ public class Casilla {
 
     public void setPosY(int posY) {
         this.posY = posY;
+    }
+
+    @Override
+    public String toString() {
+        String color = "null";
+        if(getPieza()!= null) {
+            if (pieza.isColor())
+                color = "blanco";
+            else
+                color = "negro";
+        }
+        return pieza + " " + color + "[" + posX + "]" + "[" + posY + "]  ";
     }
 }

@@ -2,12 +2,13 @@ package cr.ac.ucenfotec.bl;
 
 import java.util.ArrayList;
 
+import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.state.State;
 import cr.ac.ucenfotec.state.TurnPlayerOne;
 import cr.ac.ucenfotec.state.TurnPlayerTwo;
 
 public class Cliente {
-	private Tablero juego;
+	private ITablero juego;
 	private ArrayList<Jugador> jugadores;
 	private State playerOneState;
 	private State playerTwoState;
