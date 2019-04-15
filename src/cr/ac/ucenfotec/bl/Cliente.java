@@ -12,7 +12,9 @@ public class Cliente {
 	private ArrayList<Jugador> jugadores;
 	private State playerOneState;
 	private State playerTwoState;
-	
+	private static Cliente instanciaUnica;
+
+
 	private State activePlayer = new TurnPlayerOne(this);
 	
 	public Cliente() {
@@ -20,9 +22,16 @@ public class Cliente {
 		playerOneState = new TurnPlayerOne(this);
 		playerTwoState = new TurnPlayerTwo(this);
 	}
-	
+
 	public Cliente(ArrayList<Jugador> _jugadores) {
 		this.jugadores = _jugadores;
+	}
+
+	private static Cliente getInstance(){
+		if(instanciaUnica == null){
+			instanciaUnica = new Cliente();
+		}
+		return instanciaUnica;
 	}
 
 	public void iniciarPartida(String tipoJuego) {

@@ -2,11 +2,13 @@ package cr.ac.ucenfotec.bl.ajedrez;
 
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
+import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 
 public class Peon implements IPieza {
     int posX;
     int posY;
     boolean color;
+    IPieza mejora;
 
     public Peon() {
     }
@@ -20,6 +22,7 @@ public class Peon implements IPieza {
         this.posX = posX;
         this.posY = posY;
         this.color = color.valueOf();
+        this.mejora = null;
     }
 
     public int getPosX() {
@@ -48,7 +51,16 @@ public class Peon implements IPieza {
 
     @Override
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+
+        if(mejora != null){
+            return mejora.validarMovimiento(posX, posY, posXFinal, posYFinal);
+        }
+
         return false;
+    }
+
+    public void mejorar(IPieza mitipoPieza){
+        this.mejora = mitipoPieza;
     }
 
     @Override

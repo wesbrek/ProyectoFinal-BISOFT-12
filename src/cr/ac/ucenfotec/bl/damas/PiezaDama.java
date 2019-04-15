@@ -7,7 +7,7 @@ public class PiezaDama implements IPieza {
     int posX;
     int posY;
     boolean color;
-
+    IPieza mejora;
     public PiezaDama() {
     }
 
@@ -20,6 +20,7 @@ public class PiezaDama implements IPieza {
         this.posX = posX;
         this.posY = posY;
         this.color = color.valueOf();
+        this.mejora = null;
     }
 
     public int getPosX() {
@@ -48,6 +49,16 @@ public class PiezaDama implements IPieza {
 
     @Override
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+
+        if(this.mejora != null) {
+           //Movimiento mejorado
+        }
+
         return false;
     }
+
+    public void mejorar(IPieza mitipoPieza){
+        this.mejora = mitipoPieza;
+    }
+
 }
