@@ -57,15 +57,12 @@ public class PiezaDama implements IPieza {
         return false;
     }
 
-<<<<<<< HEAD
     @Override
     public String toString() {
         return "PiezaDama{}";
     }
-=======
+
     public void mejorar(IPieza mitipoPieza){
         this.mejora = mitipoPieza;
     }
-
->>>>>>> 68232cb569c4165182a9c5c1bdb9f281f033b523
 }
