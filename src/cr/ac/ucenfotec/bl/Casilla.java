@@ -6,6 +6,7 @@ public class Casilla {
     private IPieza pieza;
     private int posX;
     private int posY;
+    private String simbolo;
     //private boolean color;
 
 
@@ -46,6 +47,10 @@ public class Casilla {
     public void setPosY(int posY) {
         this.posY = posY;
     }
+
+    public String getSimbolo() { return simbolo; }
+
+    public void setSimbolo(String simbolo) { this.simbolo = simbolo; }
 
     @Override
     public String toString() {
