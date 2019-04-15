@@ -1,5 +1,6 @@
 package cr.ac.ucenfotec.main;
 
+import cr.ac.ucenfotec.bl.Jugador.JugadorBuilder;
 import cr.ac.ucenfotec.bl.ajedrez.TableroAjedrez;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
@@ -9,11 +10,13 @@ import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.tl.Gestor;
 
+import java.sql.SQLOutput;
+
 public class Main {
 	static Gestor controller = new Gestor();
 	
 	public static void main(String[] args) {
-		ITablero tablero = TableroFactory.getTablero(TipoJuego.AJEDREZ);
+	/*	ITablero tablero = TableroFactory.getTablero(TipoJuego.AJEDREZ);
         System.out.println(tablero.toString());
 
         ITablero builder = new TableroAjedrez.Builder()
@@ -38,6 +41,13 @@ public class Main {
                 .withPiece(PiezaFactory.getPieza(TipoPieza.PEON, 5, 6, ColorPieza.NEGRO))
                 .build();
         System.out.println(damasBuilder.toString());
+
+*/
+        controller.addPlayers("Sergio", "123123", "Abby", "123");
+
+        System.out.println(controller.nextTurn());
+
+
 	}
 
 }

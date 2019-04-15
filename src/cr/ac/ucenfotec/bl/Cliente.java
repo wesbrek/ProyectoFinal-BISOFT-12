@@ -44,8 +44,8 @@ public class Cliente {
 	
 	public void registrarJugador(String name, String password) {
 		//Validar que el jugador no exista
-		Jugador tmpJugador = new Jugador(name, password);
-		jugadores.add(tmpJugador);
+	//	Jugador tmpJugador = new Jugador(name, password);
+		//jugadores.add(tmpJugador);
 	}
 	
 	public boolean autenticarJugador(String name) {

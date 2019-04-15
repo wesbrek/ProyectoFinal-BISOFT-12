@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.Jugador;
+import cr.ac.ucenfotec.bl.Jugador.JugadorBuilder;
 
 public class Gestor {
 	static Cliente micliente = new Cliente();
@@ -26,9 +27,14 @@ public class Gestor {
 	}
 	
 	public void addPlayers(String name1, String pass1, String name2, String pass2) {
-		Jugador j1 = new Jugador(name1, pass1);
-		Jugador j2 = new Jugador(name2, pass2);
-		
+		Jugador j1;
+		Jugador j2;
+		JugadorBuilder builder1 = new JugadorBuilder();
+		builder1.name(name1).password(pass1);
+		JugadorBuilder builder2 = new JugadorBuilder();
+		builder2.name(name2).password(pass2);
+		j1 = builder1.build();
+		j2 = builder2.build();
 		mijugadores.add(j1);
 		mijugadores.add(j2);
 		
