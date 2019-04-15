@@ -50,4 +50,9 @@ public class PiezaDama implements IPieza {
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "PiezaDama{}";
+    }
 }

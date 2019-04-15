@@ -6,7 +6,8 @@ import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
-import cr.ac.ucenfotec.bl.tablero.ITablero;import cr.ac.ucenfotec.bl.piezas.IPieza;
+import cr.ac.ucenfotec.bl.tablero.ITablero;
+import cr.ac.ucenfotec.bl.piezas.IPieza;
 
 public class TableroAjedrez implements ITablero {
     Casilla[][] casillas;
@@ -16,15 +17,18 @@ public class TableroAjedrez implements ITablero {
 	    this.casillas = new Casilla[8][8];
 	    this.piezas = new ArrayList<IPieza>();
 
-        for(int i = 0; i < casillas.length; i++){
-            for(int j = 0; j < casillas.length; j++){
-                casillas[i][j] = new Casilla();
-            }
-        }
-
+        iniciarCasillas();
         iniciarTablero();
-		//Agregar cada pieza a su array respectivo.
 	}
+
+    public TableroAjedrez(ArrayList<IPieza> piezas) {
+        this.casillas = new Casilla[8][8];
+        this.piezas = piezas;
+
+        iniciarCasillas();
+        cargarTablero();
+    }
+
 
 	private void iniciarTablero(){
 	    //Fichas Blancas
@@ -62,6 +66,22 @@ public class TableroAjedrez implements ITablero {
         casillas[4][7].setPieza(PiezaFactory.getPieza(TipoPieza.REY, 4, 0, ColorPieza.NEGRO));
     }
 
+    public void cargarTablero(){
+	    if(!this.piezas.isEmpty()) {
+            for (IPieza pieza:this.piezas) {
+                casillas[pieza.getPosX()][pieza.getPosY()].setPieza(pieza);
+            }
+        }
+    }
+
+    private void iniciarCasillas() {
+        for(int i = 0; i < casillas.length; i++){
+            for(int j = 0; j < casillas.length; j++){
+                casillas[i][j] = new Casilla();
+            }
+        }
+    }
+
 	@Override
 	public boolean moverPieza(IPieza pieza, int x, int y) {
 		return false;
@@ -70,7 +90,6 @@ public class TableroAjedrez implements ITablero {
 	@Override
 	public String toString() {
 	    String salida = "";
-		//return "TableroAjedrez{}" + this.piezas.toString();
         for(int i = 0; i < casillas.length; i++){
             for(int j = 0; j < casillas.length; j++){
                 salida += casillas[j][i].toString();
@@ -81,7 +100,7 @@ public class TableroAjedrez implements ITablero {
         return salida;
 	}
 
-	/*public static class Builder {
+	public static class Builder {
         private ArrayList<IPieza> piezas = new ArrayList<IPieza>();
 
         public Builder(){
@@ -95,10 +114,9 @@ public class TableroAjedrez implements ITablero {
         }
 
         public TableroAjedrez build(){
-            TableroAjedrez ajedrez = new TableroAjedrez();
-            ajedrez.piezas = this.piezas;
+            TableroAjedrez ajedrez = new TableroAjedrez(piezas);
 
             return ajedrez;
         }
-    }*/
+    }
 }
