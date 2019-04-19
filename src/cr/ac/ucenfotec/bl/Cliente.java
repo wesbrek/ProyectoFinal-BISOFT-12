@@ -48,26 +48,29 @@ public class Cliente {
 		//jugadores.add(tmpJugador);
 	}
 	
-	public boolean autenticarJugador(String name) {
+	public boolean validarJugador(String pass) {
 		for(Jugador x : jugadores) {
-			if(x.getName() == name)
+			if(x.getPassword().equals(pass))
 				return true;
 		}
 		return false;
 	}
 	
-	public void nextTurn() {
+	public String nextTurn() {
 		activePlayer.nextTurn();
 		
 		for(int i = 0; i < jugadores.size(); i++) {
 			if(i == 0 && this.activePlayer == getPlayerOneState()) {
 				jugadores.get(i).setTurn(true);
 				jugadores.get(i + 1).setTurn(false);
+				return jugadores.get(i).getName();
 			}else if(i == 1 && this.activePlayer == getPlayerTwoState()) {
 				jugadores.get(i).setTurn(true);
 				jugadores.get(i - 1).setTurn(false);
+				return jugadores.get(i).getName();
 			}
 		}
+		return "";
 	}
 	
 	public State getPlayerOneState() {
