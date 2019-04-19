@@ -15,12 +15,12 @@ public class Cliente {
 	private static Cliente instanciaUnica;
 
 
-	private State activePlayer = new TurnPlayerOne(this);
+	private State activePlayer = new TurnPlayerTwo(this);
 	
 	public Cliente() {
-		jugadores = new ArrayList<Jugador>();
-		playerOneState = new TurnPlayerOne(this);
-		playerTwoState = new TurnPlayerTwo(this);
+		this.jugadores = new ArrayList<Jugador>();
+		this.playerOneState = new TurnPlayerOne(this);
+		this.playerTwoState = new TurnPlayerTwo(this);
 	}
 
 	public Cliente(ArrayList<Jugador> _jugadores) {
@@ -88,5 +88,9 @@ public class Cliente {
 	
 	public void setJugadores(ArrayList<Jugador> _jugadores) {
 		this.jugadores = _jugadores;
+	}
+
+	public ArrayList<Jugador> getJugadores(){
+		return this.jugadores;
 	}
 }
