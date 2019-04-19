@@ -17,7 +17,12 @@ public class TableroGo implements ITablero {
 		return false;
 	}
 
-	@Override
+    @Override
+    public IPieza getPieza(int x, int y) {
+        return null;
+    }
+
+    @Override
 	public String toString() {
 		return "TableroGo{}";
 	}

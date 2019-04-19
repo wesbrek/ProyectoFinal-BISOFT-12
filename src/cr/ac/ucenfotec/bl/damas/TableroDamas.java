@@ -79,7 +79,12 @@ public class TableroDamas implements ITablero {
 		return false;
 	}
 
-	@Override
+    @Override
+    public IPieza getPieza(int x, int y) {
+        return null;
+    }
+
+    @Override
 	public String toString() {
         String salida = "";
         for(int i = 0; i < casillas.length; i++){
