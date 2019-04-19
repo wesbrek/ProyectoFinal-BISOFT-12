@@ -32,14 +32,7 @@ public class Gestor {
 	}
 
 	public boolean validarJugador(String pass){
-		ArrayList <Jugador> jugadores = micliente.getJugadores();
-		for(int i = 0; i < jugadores.size(); i++){
-			if(jugadores.get(i).getPassword().equals(pass)) {
-				return true;
-			}
-		}
-
-		return false;
+		return micliente.validarJugador(pass);
 	}
 
 	public void crearTablero(TipoJuego tipoJuego){
@@ -71,16 +64,7 @@ public class Gestor {
     }
 
 	public String nextTurn(){
-		ArrayList <Jugador> jugadores = micliente.getJugadores();
-		micliente.nextTurn();
-		if(micliente.getState() == micliente.getPlayerOneState()){
-			return jugadores.get(0).getName();
-		}else if(micliente.getState() == micliente.getPlayerTwoState()){
-			return jugadores.get(1).getName();
-		}
-
-		return "";
-
+		return micliente.nextTurn();
 	}
 
 	public void restartState(){
