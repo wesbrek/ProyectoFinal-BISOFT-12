@@ -9,8 +9,8 @@ public class Jugador {
 	private boolean turn;
 
 
-	private Jugador(String nombre, String contrasenna) {
-		this.turn = false;
+	private Jugador(String nombre, String contrasenna, boolean turn) {
+		this.turn = turn;
 		this.name = nombre;
 		this.password = contrasenna;
 	}
@@ -33,6 +33,10 @@ public class Jugador {
 		return this.name;
 	}
 
+	public String getPassword(){
+		return this.password;
+	}
+
 
 
 	@Override
@@ -44,7 +48,7 @@ public class Jugador {
 	public static class JugadorBuilder{
 		private String name;
 		private String password;
-
+		private boolean turn;
 
 
 		public JugadorBuilder(){
@@ -61,8 +65,13 @@ public class Jugador {
 			return this;
 		}
 
+		public JugadorBuilder turn(boolean turn){
+			this.turn = turn;
+			return this;
+		}
+
 		public Jugador build(){
-			return new Jugador(name, password);
+			return new Jugador(name, password, turn);
 		}
 	}
 
