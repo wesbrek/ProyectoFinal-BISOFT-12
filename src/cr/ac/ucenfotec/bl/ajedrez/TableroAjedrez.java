@@ -84,10 +84,20 @@ public class TableroAjedrez implements ITablero {
 
 	@Override
 	public boolean moverPieza(IPieza pieza, int x, int y) {
-		return false;
+		if (pieza.validarMovimiento(pieza.getPosX(), pieza.getPosY(), x, y)) {
+            casillas[pieza.getPosX()][pieza.getPosY()] = new Casilla();
+            casillas[x][y].setPieza(pieza);
+            return true;
+        }
+	    return false;
 	}
 
-	@Override
+    @Override
+    public IPieza getPieza(int x, int y) {
+        return casillas[x][y].getPieza();
+    }
+
+    @Override
 	public String toString() {
 	    String salida = "";
         for(int i = 0; i < casillas.length; i++){

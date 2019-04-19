@@ -10,14 +10,12 @@ import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.tl.Gestor;
 
-import java.sql.SQLOutput;
-
 public class Main {
 	static Gestor controller = new Gestor();
 	
 	public static void main(String[] args) {
-	/*	ITablero tablero = TableroFactory.getTablero(TipoJuego.AJEDREZ);
-        System.out.println(tablero.toString());
+		ITablero tablero = TableroFactory.getTablero(TipoJuego.AJEDREZ);
+        //System.out.println(tablero.toString());
 
         ITablero builder = new TableroAjedrez.Builder()
                 .withPiece(PiezaFactory.getPieza(TipoPieza.PEON, 0, 1, ColorPieza.NEGRO))
@@ -27,7 +25,16 @@ public class Main {
                 .withPiece(PiezaFactory.getPieza(TipoPieza.PEON, 4, 1, ColorPieza.NEGRO))
                 .withPiece(PiezaFactory.getPieza(TipoPieza.PEON, 5, 1, ColorPieza.NEGRO))
                 .build();
-        System.out.println(builder.toString());
+
+        System.out.println(tablero.toString());
+        boolean move = tablero.moverPieza(tablero.getPieza(0, 1), 0, 2);
+        if (!move) {
+            System.out.println("[!] Posición inválida!");
+        }
+        System.out.println(tablero.toString());
+
+
+        /*System.out.println(builder.toString());
 
         ITablero damas = TableroFactory.getTablero(TipoJuego.DAMAS);
         System.out.println(damas.toString());
@@ -42,11 +49,11 @@ public class Main {
                 .build();
         System.out.println(damasBuilder.toString());
 
-*/
+
         controller.addPlayers("Sergio", "123123", "Abby", "123");
 
         System.out.println(controller.nextTurn());
-
+*/
 
 	}
 
