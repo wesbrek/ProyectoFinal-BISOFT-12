@@ -6,6 +6,7 @@ import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
+import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 
 import java.util.ArrayList;
 
@@ -74,10 +75,11 @@ public class TableroDamas implements ITablero {
             }
         }
     }
+
     @Override
-	public boolean moverPieza(IPieza pieza, int x, int y) {
-		return false;
-	}
+    public boolean moverPieza(int x, int y, int xFinal, int yFinal) {
+        return false;
+    }
 
     @Override
     public IPieza getPieza(int x, int y) {

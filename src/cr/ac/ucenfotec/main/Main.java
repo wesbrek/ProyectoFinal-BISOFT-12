@@ -6,6 +6,7 @@ import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
+import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.tl.Gestor;
@@ -22,10 +23,21 @@ public class Main {
 	static ITablero tablero;
 	public static void main(String[] args) throws IOException {
 
-          registrarJugadores();
+          //registrarJugadores();
         //mostrarMenu();
 
 
+        controller.crearTablero(TipoJuego.AJEDREZ);
+        System.out.println(controller.imprimirTablero());
+
+        controller.moverPieza("A2A3");
+        System.out.println(controller.imprimirTablero());
+
+        /*
+        String pieza = "B";
+        tablero.moverPieza(PosicionTablero.valueOf(pieza), 1, PosicionTablero.valueOf(pieza), 3);
+        System.out.println(tablero.toString());
+        */
 
 
 
@@ -55,9 +67,8 @@ public class Main {
 
 
 
-
-
-	/*	ITablero tablero = TableroFactory.getTablero(TipoJuego.AJEDREZ);
+    /*
+		ITablero tablero = TableroFactory.getTablero(TipoJuego.AJEDREZ);
         //System.out.println(tablero.toString());
 
         ITablero builder = new TableroAjedrez.Builder()
@@ -96,7 +107,6 @@ public class Main {
         controller.addPlayers("Sergio", "123123", "Abby", "123");
 
         System.out.println(controller.nextTurn());
-*/
 
 	}
 
@@ -302,8 +312,7 @@ public class Main {
         }while(move == false);
 
 
-
+*/
     }
-
 
 }

@@ -3,6 +3,7 @@ package cr.ac.ucenfotec.bl.go;
 import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
+import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 
 public class TableroGo implements ITablero {
     Casilla[][] casillas;
@@ -13,11 +14,11 @@ public class TableroGo implements ITablero {
 	}
 
 	@Override
-	public boolean moverPieza(IPieza pieza, int x, int y) {
+	public boolean moverPieza(int x, int y, int xFinal, int yFinal) {
 		return false;
 	}
 
-    @Override
+	@Override
     public IPieza getPieza(int x, int y) {
         return null;
     }
