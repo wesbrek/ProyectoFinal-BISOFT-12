@@ -3,12 +3,12 @@ package cr.ac.ucenfotec.bl.ajedrez;
 import java.util.ArrayList;
 
 import cr.ac.ucenfotec.bl.Casilla;
+import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
-import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 
 public class TableroAjedrez implements ITablero {
     Casilla[][] casillas;
@@ -84,7 +84,7 @@ public class TableroAjedrez implements ITablero {
     }
 
 	@Override
-    public boolean moverPieza(int x, int y, int xFinal, int yFinal){
+    public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente micliente){
         IPieza temp = casillas[x][y].getPieza();
         casillas[x][y] = new Casilla();
 

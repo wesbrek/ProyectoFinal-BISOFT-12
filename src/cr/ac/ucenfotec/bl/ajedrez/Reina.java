@@ -1,5 +1,6 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
+import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 
@@ -52,7 +53,7 @@ public class Reina implements IPieza {
     public void setSimbolo(String simbolo) { this.simbolo = simbolo; }
 
     @Override
-	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente) {
 		return false;
 	}
 

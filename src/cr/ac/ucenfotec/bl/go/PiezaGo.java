@@ -1,7 +1,9 @@
 package cr.ac.ucenfotec.bl.go;
 
+import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
+import cr.ac.ucenfotec.state.State;
 
 public class PiezaGo implements IPieza {
     int posX;
@@ -49,7 +51,7 @@ public class PiezaGo implements IPieza {
     public String getSimbolo() { return (isColor()) ? "White" : "False"; }
 
     @Override
-    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal) {
+    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente) {
         return false;
     }
 }

@@ -51,8 +51,7 @@ public class Gestor {
         String xFinal = String.valueOf(command.charAt(2));
         int yFinal = Integer.parseInt(String.valueOf(command.charAt(3))) - 1;
 
-        micliente.moverPieza(toEnum(xInicial).intValueOf(), yInicial, toEnum(xFinal).intValueOf(), yFinal);
-		return false;
+        return micliente.moverPieza(toEnum(xInicial).intValueOf(), yInicial, toEnum(xFinal).intValueOf(), yFinal, micliente);
 	}
 
 	private PosicionTablero toEnum(String pos){
