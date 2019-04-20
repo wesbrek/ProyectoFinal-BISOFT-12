@@ -26,12 +26,22 @@ public class Main {
           //registrarJugadores();
         //mostrarMenu();
 
-
-        controller.crearTablero(TipoJuego.AJEDREZ);
+        controller.nextTurn();
+        controller.crearTablero(TipoJuego.DAMAS);
         System.out.println(controller.imprimirTablero());
 
-        controller.moverPieza("A2A3");
+       boolean d =controller.moverPieza("D4E5");
+       if(d == false){
+           out.println("Movimiento invalido");
+       }
+        controller.nextTurn();
         System.out.println(controller.imprimirTablero());
+        boolean e =controller.moverPieza("C7B6");
+        if(e == false){
+            out.println("Movimiento invalido");
+        }
+        System.out.println(controller.imprimirTablero());
+
 
         /*
         String pieza = "B";

@@ -3,7 +3,6 @@ package cr.ac.ucenfotec.bl;
 import java.util.ArrayList;
 
 import cr.ac.ucenfotec.bl.tablero.ITablero;
-import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.state.State;
@@ -74,8 +73,8 @@ public class Cliente {
 		return "";
 	}
 
-	public boolean moverPieza(int xInicial, int yInicial, int xFinal, int yFinal) {
-		return juego.moverPieza(xInicial, yInicial, xFinal, yFinal);
+	public boolean moverPieza(int xInicial, int yInicial, int xFinal, int yFinal, Cliente micliente) {
+		return juego.moverPieza(xInicial, yInicial, xFinal, yFinal, micliente);
 	}
 	
 	public State getPlayerOneState() {

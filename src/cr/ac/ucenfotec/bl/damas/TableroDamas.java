@@ -1,12 +1,14 @@
 package cr.ac.ucenfotec.bl.damas;
 
 import cr.ac.ucenfotec.bl.Casilla;
+import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
+import cr.ac.ucenfotec.state.State;
 
 import java.util.ArrayList;
 
@@ -77,24 +79,48 @@ public class TableroDamas implements ITablero {
     }
 
     @Override
-    public boolean moverPieza(int x, int y, int xFinal, int yFinal) {
+    public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente micliente) {
+        if (getPieza(x, y).validarMovimiento(x, y, xFinal, yFinal, micliente)) {
+
+             boolean valPieza = validarPieza(xFinal,yFinal);
+
+            if(valPieza == false){
+                IPieza temp = casillas[x][y].getPieza();
+                casillas[x][y] = new Casilla();
+                casillas[xFinal][yFinal].setPieza(temp);
+                return true;
+            }
+        }
         return false;
+    }
+
+
+    public boolean validarPieza(int xFinal, int yFinal) {
+        if(getPieza(xFinal, yFinal) != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public IPieza getPieza(int x, int y) {
-        return null;
+        return casillas[x][y].getPieza();
     }
 
     @Override
 	public String toString() {
         String salida = "";
-        for(int i = 0; i < casillas.length; i++){
+        for(int i = casillas.length-1; i >= 0; i--){
+            salida += "\n---+---+---+---+---+---+---+---+---+---+---+\n";
             for(int j = 0; j < casillas.length; j++){
-                salida += casillas[j][i].toString();
+                IPieza tmp = casillas[j][i].getPieza();
+                String p = (casillas[j][i].getPieza() == null) ? "   " : (tmp.isColor()) ? "*" + tmp.getSimbolo() + "*" : " " + tmp.getSimbolo() + " ";
+                salida += (j == 0) ? " " + (i+1) + " |" + p + "|": "" + p +"|";
             }
-            salida += '\n';
         }
+        salida += "\n---+---+---+---+---+---+---+---+---+---+---+";
+        salida += "\n   | a | b | c | d | e | f | g | h | i | j |";
 
         return salida;
 	}
