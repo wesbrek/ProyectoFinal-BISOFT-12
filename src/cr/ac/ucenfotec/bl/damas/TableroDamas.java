@@ -79,10 +79,10 @@ public class TableroDamas implements ITablero {
     }
 
     @Override
-    public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente micliente) {
-        if (getPieza(x, y).validarMovimiento(x, y, xFinal, yFinal, micliente)) {
+    public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
+        if (getPieza(x, y).validarMovimiento(x, y, xFinal, yFinal, cliente)) {
 
-             boolean valPieza = validarPieza(xFinal,yFinal);
+             boolean valPieza = validarPieza(x, y, xFinal, yFinal);
 
             if(valPieza == false){
                 IPieza temp = casillas[x][y].getPieza();
@@ -95,7 +95,7 @@ public class TableroDamas implements ITablero {
     }
 
 
-    public boolean validarPieza(int xFinal, int yFinal) {
+    public boolean validarPieza(int x, int y, int xFinal, int yFinal) {
         if(getPieza(xFinal, yFinal) != null){
             return true;
         }else{

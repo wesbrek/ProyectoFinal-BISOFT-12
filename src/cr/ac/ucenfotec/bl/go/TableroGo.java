@@ -14,11 +14,16 @@ public class TableroGo implements ITablero {
 	}
 
 	@Override
-	public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente micliente) {
+	public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
 		return false;
 	}
 
-	@Override
+    @Override
+    public boolean validarPieza(int x, int y, int xFinal, int yFinal) {
+        return false;
+    }
+
+    @Override
     public IPieza getPieza(int x, int y) {
         return null;
     }

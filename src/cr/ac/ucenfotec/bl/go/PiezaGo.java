@@ -51,7 +51,7 @@ public class PiezaGo implements IPieza {
     public String getSimbolo() { return (isColor()) ? "White" : "False"; }
 
     @Override
-    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente) {
+    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
         return false;
     }
 }

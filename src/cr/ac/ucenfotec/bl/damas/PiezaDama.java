@@ -53,19 +53,19 @@ public class PiezaDama implements IPieza {
     public String getSimbolo() { return this.simbolo; }
 
     @Override
-    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente) {
+    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
 
         if(this.mejora != null) {
            //Movimiento mejorado
         }else if(this.mejora == null){
 
-            if(this.color == ColorPieza.BLANCO.valueOf() && micliente.getState() == micliente.getPlayerOneState()){
+            if(this.color == ColorPieza.BLANCO.valueOf() && cliente.getState() == cliente.getPlayerOneState()){
                 if(posX -1 == posXFinal && posY + 1 == posYFinal){
                     return true;
                 }else if(posX + 1 == posXFinal && posY + 1 == posYFinal){
                     return true;
                 }
-            }else if(this.color == ColorPieza.NEGRO.valueOf() && micliente.getState() == micliente.getPlayerTwoState()){
+            }else if(this.color == ColorPieza.NEGRO.valueOf() && cliente.getState() == cliente.getPlayerTwoState()){
                 if(posX +1 == posXFinal && posY - 1 == posYFinal){
                     return true;
                 }else if(posX - 1 == posXFinal && posY - 1 == posYFinal){
