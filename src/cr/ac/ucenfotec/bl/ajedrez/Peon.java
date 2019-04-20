@@ -55,10 +55,10 @@ public class Peon implements IPieza {
     public void setSimbolo(String simbolo) { this.simbolo = simbolo; }
 
     @Override
-    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente) {
+    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
 
         if(mejora != null){
-            return mejora.validarMovimiento(posX, posY, posXFinal, posYFinal, micliente);
+            return mejora.validarMovimiento(posX, posY, posXFinal, posYFinal, cliente);
         }
 
         return false;

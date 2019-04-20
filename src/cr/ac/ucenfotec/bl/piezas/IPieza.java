@@ -9,6 +9,6 @@ public interface IPieza {
     int getPosY();
     boolean isColor();
     String getSimbolo();
-    boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente);
+    boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente);
     //boolean clavada();
 }

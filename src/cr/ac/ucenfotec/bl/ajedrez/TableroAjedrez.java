@@ -10,6 +10,8 @@ import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 
+import static cr.ac.ucenfotec.bl.piezas.TipoPieza.PEON;
+
 public class TableroAjedrez implements ITablero {
     Casilla[][] casillas;
     private ArrayList<IPieza> piezas;
@@ -34,7 +36,7 @@ public class TableroAjedrez implements ITablero {
 	private void iniciarTablero(){
 	    //Fichas Blancas
         for(int x = 0; x < casillas.length; x++){
-            casillas[x][1].setPieza(PiezaFactory.getPieza(TipoPieza.PEON, x, 1, ColorPieza.BLANCO));
+            casillas[x][1].setPieza(PiezaFactory.getPieza(PEON, x, 1, ColorPieza.BLANCO));
         }
 
         casillas[0][0].setPieza(PiezaFactory.getPieza(TipoPieza.TORRE, 0, 0, ColorPieza.BLANCO));
@@ -52,7 +54,7 @@ public class TableroAjedrez implements ITablero {
         //Fichas Negras
 
         for(int x = 0; x < casillas.length; x++){
-            casillas[x][6].setPieza(PiezaFactory.getPieza(TipoPieza.PEON, x, 1, ColorPieza.NEGRO));
+            casillas[x][6].setPieza(PiezaFactory.getPieza(PEON, x, 1, ColorPieza.NEGRO));
         }
         casillas[0][7].setPieza(PiezaFactory.getPieza(TipoPieza.TORRE, 0, 7, ColorPieza.NEGRO));
         casillas[7][7].setPieza(PiezaFactory.getPieza(TipoPieza.TORRE, 7, 7, ColorPieza.NEGRO));
@@ -84,11 +86,29 @@ public class TableroAjedrez implements ITablero {
     }
 
 	@Override
-    public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente micliente){
-        IPieza temp = casillas[x][y].getPieza();
-        casillas[x][y] = new Casilla();
+    public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
+        if (getPieza(x, y).validarMovimiento(x, y, xFinal, yFinal, cliente)) {
 
-        casillas[xFinal][yFinal].setPieza(temp);
+            // validarPieza(TipoPieza tipoPieza, int x, int y, int xFinal, int yFinal)
+            // TipoPieza.valueOf(pieza.getClass().getSimpleName().toUpperCase()
+
+
+            IPieza temp = casillas[x][y].getPieza();
+            casillas[x][y] = new Casilla();
+            casillas[xFinal][yFinal].setPieza(temp);
+
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean validarPieza(int x, int y, int xFinal, int yFinal) {
+        TipoPieza tipoPieza = TipoPieza.valueOf(getPieza(x, y).getClass().getSimpleName().toUpperCase());
+	    switch (tipoPieza) {
+            case PEON:
+                break;
+        }
         return true;
     }
 

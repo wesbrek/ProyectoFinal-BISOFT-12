@@ -53,7 +53,7 @@ public class Rey implements IPieza {
     public void setSimbolo(String simbolo) { this.simbolo = simbolo; }
 
     @Override
-	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente micliente) {
+	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
 		return false;
 	}
 
