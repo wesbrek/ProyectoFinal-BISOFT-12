@@ -3,6 +3,9 @@ package cr.ac.ucenfotec.bl;
 import java.util.ArrayList;
 
 import cr.ac.ucenfotec.bl.tablero.ITablero;
+import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
+import cr.ac.ucenfotec.bl.tablero.TableroFactory;
+import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.state.State;
 import cr.ac.ucenfotec.state.TurnPlayerOne;
 import cr.ac.ucenfotec.state.TurnPlayerTwo;
@@ -34,12 +37,10 @@ public class Cliente {
 		return instanciaUnica;
 	}
 
-	public void iniciarPartida(String tipoJuego) {
+	public void iniciarPartida(TipoJuego tipoJuego) {
 		//Validar el tipo de juego.
-		
-		//Si tipo Juego == "Ajedrez", crear un tablero de tipo Ajedrez.
-		//Si tipo Juego == "Damas", crear un tablero de tipo Damas.
-		//Si tipo Go == "Go", crear un tablero de tipo Go.
+
+        juego = TableroFactory.getTablero(tipoJuego);
 	}
 	
 	public void registrarJugador(String name, String password) {
@@ -58,7 +59,7 @@ public class Cliente {
 	
 	public String nextTurn() {
 		activePlayer.nextTurn();
-		
+
 		for(int i = 0; i < jugadores.size(); i++) {
 			if(i == 0 && this.activePlayer == getPlayerOneState()) {
 				jugadores.get(i).setTurn(true);
@@ -71,6 +72,10 @@ public class Cliente {
 			}
 		}
 		return "";
+	}
+
+	public boolean moverPieza(int xInicial, int yInicial, int xFinal, int yFinal) {
+		return juego.moverPieza(xInicial, yInicial, xFinal, yFinal);
 	}
 	
 	public State getPlayerOneState() {
@@ -96,4 +101,8 @@ public class Cliente {
 	public ArrayList<Jugador> getJugadores(){
 		return this.jugadores;
 	}
+
+    public String imprimirTablero() {
+        return juego.toString();
+    }
 }

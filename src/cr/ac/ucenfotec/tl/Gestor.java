@@ -6,6 +6,7 @@ import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.Jugador;
 import cr.ac.ucenfotec.bl.Jugador.JugadorBuilder;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
+import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.state.State;
@@ -34,10 +35,33 @@ public class Gestor {
 		return micliente.validarJugador(pass);
 	}
 
+	public void crearTablero(TipoJuego tipoJuego){
+	    micliente.iniciarPartida(tipoJuego);
+    }
+
 	public ITablero getTablero(TipoJuego juego){
 		ITablero tablero = TableroFactory.getTablero(juego);
 		return tablero;
 	}
+
+	public boolean moverPieza(String command){
+		command.trim();
+		String xInicial = String.valueOf(command.charAt(0));
+		int yInicial = Integer.parseInt(String.valueOf(command.charAt(1))) - 1;
+        String xFinal = String.valueOf(command.charAt(2));
+        int yFinal = Integer.parseInt(String.valueOf(command.charAt(3))) - 1;
+
+        micliente.moverPieza(toEnum(xInicial).intValueOf(), yInicial, toEnum(xFinal).intValueOf(), yFinal);
+		return false;
+	}
+
+	private PosicionTablero toEnum(String pos){
+	    return PosicionTablero.valueOf(pos);
+    }
+
+    public String imprimirTablero(){
+	    return micliente.imprimirTablero();
+    }
 
 	public String nextTurn(){
 		return micliente.nextTurn();
