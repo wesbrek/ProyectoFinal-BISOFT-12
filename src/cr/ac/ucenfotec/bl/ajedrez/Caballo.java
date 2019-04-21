@@ -54,10 +54,27 @@ public class Caballo implements IPieza {
     public void setSimbolo(String simbolo) { this.simbolo = simbolo; }
 
     @Override
-	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
-		return false;
-	}
+    public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
+        boolean valido = false;
 
+        // Arriba » Derecha-Izquierda
+        if (posY+2 == posYFinal && (posX+1 == posXFinal || posX-1 == posXFinal)) {
+            valido = true;
+        }
+        // Abajo » Derecha-Izquierda
+        if (posY-2 == posYFinal && (posX+1 == posXFinal || posX-1 == posXFinal)) {
+            valido = true;
+        }
+        // Derecha » Arriba-Abajo
+        if (posX+2 == posXFinal && (posY+1 == posYFinal || posY-1 == posYFinal)) {
+            valido = true;
+        }
+        // Izquierda » Arriba-Abajo
+        if (posX-2 == posXFinal && (posY+1 == posYFinal || posY-1 == posYFinal)) {
+            valido = true;
+        }
+        return valido;
+    }
     @Override
     public String toString() {
         return "Caballo{}";
