@@ -88,28 +88,44 @@ public class TableroAjedrez implements ITablero {
 	@Override
     public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
         if (getPieza(x, y).validarMovimiento(x, y, xFinal, yFinal, cliente)) {
-
-            // validarPieza(TipoPieza tipoPieza, int x, int y, int xFinal, int yFinal)
-            // TipoPieza.valueOf(pieza.getClass().getSimpleName().toUpperCase()
-
-
-            IPieza temp = casillas[x][y].getPieza();
-            casillas[x][y] = new Casilla();
-            casillas[xFinal][yFinal].setPieza(temp);
-
-            return true;
+            if (validarPieza(x, y, xFinal, yFinal)) {
+                IPieza temp = casillas[x][y].getPieza();
+                casillas[x][y] = new Casilla();
+                casillas[xFinal][yFinal].setPieza(temp);
+                return true;
+            }
         }
         return false;
     }
 
     @Override
     public boolean validarPieza(int x, int y, int xFinal, int yFinal) {
-        TipoPieza tipoPieza = TipoPieza.valueOf(getPieza(x, y).getClass().getSimpleName().toUpperCase());
-	    switch (tipoPieza) {
+        boolean valido = true;
+	    IPieza pieza = getPieza(x, y);
+        TipoPieza tipoPieza = TipoPieza.valueOf(pieza.getClass().getSimpleName().toUpperCase());
+
+        switch (tipoPieza) {
             case PEON:
+                // Blanco - Diagonal
+                if (getPieza(x, y).isColor() && x != xFinal && ( (getPieza(xFinal, yFinal) == null) ? true : (getPieza(xFinal, yFinal).isColor()) ? true : false) ) {
+                    valido = false;
+                }
+                // Blanco - Frente
+                if (getPieza(x, y).isColor() && (x == xFinal && y != yFinal) && ( (getPieza(xFinal, yFinal) != null) ? true : false) ) {
+                    valido = false;
+                }
+
+                // Negro - Diagonal
+                if (!getPieza(x, y).isColor() && x != xFinal && ( (getPieza(xFinal, yFinal) == null) ? true : (!getPieza(xFinal, yFinal).isColor()) ? true : false) ) {
+                    valido = false;
+                }
+                // Negro - Frente
+                if (!getPieza(x, y).isColor() && (x == xFinal && y != yFinal) && ( (getPieza(xFinal, yFinal) != null) ? true : false) ) {
+                    valido = false;
+                }
                 break;
         }
-        return true;
+        return valido;
     }
 
     @Override

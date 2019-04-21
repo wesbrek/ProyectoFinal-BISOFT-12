@@ -56,12 +56,49 @@ public class Peon implements IPieza {
 
     @Override
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
+        boolean valido = false;
 
         if(mejora != null){
             return mejora.validarMovimiento(posX, posY, posXFinal, posYFinal, cliente);
         }
 
-        return false;
+        // Blanco
+        if (this.color == ColorPieza.BLANCO.valueOf() && cliente.getState() == cliente.getPlayerOneState()) {
+            // 1 Adelante
+            if (posY+1 == posYFinal) {
+                valido = true;
+            }
+            // 2 Adelante
+            if (posY == 1 && posY+2 == posYFinal) {
+                valido = true;
+            }
+            // Diagonal
+            if (posX + 1 == posXFinal && posY + 1 == posYFinal ||
+                posX - 1 == posXFinal && posY + 1 == posYFinal) {
+                valido = true;
+            }
+
+        // Negro
+        } else if (this.color == ColorPieza.NEGRO.valueOf() && cliente.getState() == cliente.getPlayerTwoState()) {
+            // 1 Adelante
+            if (posY-1 == posYFinal) {
+                valido = true;
+            }
+            // 2 Adelante
+            if (posY == 6 && posY-2 == posYFinal) {
+                valido = true;
+            }
+            // Diagonal
+            if (posX + 1 == posXFinal && posY - 1 == posYFinal ||
+                posX - 1 == posXFinal && posY - 1 == posYFinal) {
+                valido = true;
+            }
+        }
+
+
+
+
+        return valido;
     }
 
     public void mejorar(IPieza mitipoPieza){
