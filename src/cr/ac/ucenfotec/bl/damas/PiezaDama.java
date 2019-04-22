@@ -3,13 +3,14 @@ package cr.ac.ucenfotec.bl.damas;
 import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
-import cr.ac.ucenfotec.state.TurnPlayerOne;
+
 
 public class PiezaDama implements IPieza {
     int posX;
     int posY;
     boolean color;
     IPieza mejora;
+    boolean capture;
     String simbolo = "D";
     public PiezaDama() {
     }
@@ -24,6 +25,7 @@ public class PiezaDama implements IPieza {
         this.posY = posY;
         this.color = color.valueOf();
         this.mejora = null;
+        this.capture = false;
     }
 
     public int getPosX() {
@@ -52,6 +54,11 @@ public class PiezaDama implements IPieza {
 
     public String getSimbolo() { return this.simbolo; }
 
+
+    public boolean getCapture() { return this.capture; }
+
+    public void setCapture(boolean capture){ this.capture = capture; }
+
     @Override
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
 
@@ -72,15 +79,11 @@ public class PiezaDama implements IPieza {
                     return true;
                 }
             }
-
         }
-
-        System.out.println("Posicion x" + posX + "Posicion y" + posY + "Posicion x Final" + posXFinal + "Posicion y final" + posYFinal);
-
-
-
         return false;
     }
+
+
 
     @Override
     public String toString() {
