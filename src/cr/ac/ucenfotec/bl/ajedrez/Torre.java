@@ -54,7 +54,19 @@ public class Torre implements IPieza {
 
 	@Override
 	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
-		return false;
+		boolean valido = false;
+
+		// Arriba y Abajo
+		if (posX == posXFinal) {
+		    valido = true;
+        }
+
+        // Izquierda y Derecha
+        if (posY == posYFinal) {
+            valido = true;
+        }
+
+		return valido;
 	}
 
     @Override
