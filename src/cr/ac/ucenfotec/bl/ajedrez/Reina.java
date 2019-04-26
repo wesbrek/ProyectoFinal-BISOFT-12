@@ -54,7 +54,24 @@ public class Reina implements IPieza {
 
     @Override
 	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
-		return false;
+        boolean valido = false;
+
+        // Arriba y Abajo
+        if (posX == posXFinal) {
+            valido = true;
+        }
+
+        // Izquierda y Derecha
+        if (posY == posYFinal) {
+            valido = true;
+        }
+
+        // Diagonal
+        if (Math.abs(posX - posXFinal) == Math.abs(posY - posYFinal)) {
+            valido = true;
+        }
+
+        return valido;
 	}
 
     @Override
