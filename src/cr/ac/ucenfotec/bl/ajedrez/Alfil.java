@@ -56,6 +56,7 @@ public class Alfil implements IPieza {
 	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
 		boolean valido = false;
 
+		// Diagonal
 		if (Math.abs(posX - posXFinal) == Math.abs(posY - posYFinal)) {
             valido = true;
         }
