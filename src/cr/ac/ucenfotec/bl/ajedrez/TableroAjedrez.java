@@ -138,12 +138,149 @@ public class TableroAjedrez implements ITablero {
 
             case TORRE:
                 // Blanco
-                if (getPieza(x, y).isColor() && ( (getPieza(xFinal, yFinal) != null) ? (getPieza(xFinal, yFinal).isColor() ? true : false) : false)) {
-                    valido = false;
+                if (getPieza(x, y).isColor()) {
+                    // Arriba
+                    if (x == xFinal && yFinal > y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y+1); i <= yFinal; i++) {
+                            if (getPieza(xFinal, i) != null) {
+                                if (!getPieza(xFinal, i).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != yFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Abajo
+                    if (x == xFinal && yFinal < y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y-1); i >= yFinal; i--) {
+                            if (getPieza(xFinal, i) != null) {
+                                if (!getPieza(xFinal, i).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != yFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Derecha
+                    if (y == yFinal && xFinal > x) {
+                        for (int i = (x+1); i <= xFinal; i++) {
+                            if (getPieza(i, yFinal) != null) {
+                                if (!getPieza(i, yFinal).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Izquierda
+                    if (y == yFinal && xFinal < x) {
+                        for (int i = (x-1); i >= xFinal; i--) {
+                            if (getPieza(i, yFinal) != null) {
+                                if (!getPieza(i, yFinal).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+
                 // Negro
-                if (!getPieza(x, y).isColor() && ( (getPieza(xFinal, yFinal) != null) ? (!getPieza(xFinal, yFinal).isColor() ? true : false) : false)) {
-                    valido = false;
+                if (!getPieza(x, y).isColor()) {
+                    // Arriba
+                    if (x == xFinal && yFinal > y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y+1); i <= yFinal; i++) {
+                            if (getPieza(xFinal, i) != null) {
+                                if (!getPieza(xFinal, i).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != yFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Abajo
+                    if (x == xFinal && yFinal < y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y-1); i >= yFinal; i--) {
+                            if (getPieza(xFinal, i) != null) {
+                                if (!getPieza(xFinal, i).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != yFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Derecha
+                    if (y == yFinal && xFinal > x) {
+                        for (int i = (x+1); i <= xFinal; i++) {
+                            if (getPieza(i, yFinal) != null) {
+                                if (!getPieza(i, yFinal).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Izquierda
+                    if (y == yFinal && xFinal < x) {
+                        for (int i = (x-1); i >= xFinal; i--) {
+                            if (getPieza(i, yFinal) != null) {
+                                if (!getPieza(i, yFinal).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 break;
 
@@ -163,9 +300,10 @@ public class TableroAjedrez implements ITablero {
                 if (getPieza(x, y).isColor()) {
                     // Arriba
                     if (x == xFinal && yFinal > y) {
-                        for (int i = (y+1); i > Math.abs(yFinal - y); i--) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y+1); i <= yFinal; i++) {
                             if (getPieza(xFinal, i) != null) {
-                                if (getPieza(xFinal, i).isColor()) {
+                                if (!getPieza(xFinal, i).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -180,9 +318,10 @@ public class TableroAjedrez implements ITablero {
 
                     // Abajo
                     if (x == xFinal && yFinal < y) {
-                        for (int i = (y+1); i < Math.abs(yFinal - y) + y; i++) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y-1); i >= yFinal; i--) {
                             if (getPieza(xFinal, i) != null) {
-                                if (getPieza(xFinal, i).isColor()) {
+                                if (!getPieza(xFinal, i).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -197,10 +336,9 @@ public class TableroAjedrez implements ITablero {
 
                     // Derecha
                     if (y == yFinal && xFinal > x) {
-                        for (int i = (x+1); i < Math.abs(xFinal - x) + x; i++) {
-                            System.out.println(i);
+                        for (int i = (x+1); i <= xFinal; i++) {
                             if (getPieza(i, yFinal) != null) {
-                                if (getPieza(i, yFinal).isColor()) {
+                                if (!getPieza(i, yFinal).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -215,9 +353,9 @@ public class TableroAjedrez implements ITablero {
 
                     // Izquierda
                     if (y == yFinal && xFinal < x) {
-                        for (int i = (x-1); i > Math.abs(xFinal - x); i--) {
+                        for (int i = (x-1); i >= xFinal; i--) {
                             if (getPieza(i, yFinal) != null) {
-                                if (getPieza(i, yFinal).isColor()) {
+                                if (!getPieza(i, yFinal).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -235,9 +373,10 @@ public class TableroAjedrez implements ITablero {
                 if (!getPieza(x, y).isColor()) {
                     // Arriba
                     if (x == xFinal && yFinal > y) {
-                        for (int i = (y+1); i > Math.abs(yFinal - y); i--) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y+1); i <= yFinal; i++) {
                             if (getPieza(xFinal, i) != null) {
-                                if (getPieza(xFinal, i).isColor()) {
+                                if (!getPieza(xFinal, i).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -252,9 +391,10 @@ public class TableroAjedrez implements ITablero {
 
                     // Abajo
                     if (x == xFinal && yFinal < y) {
-                        for (int i = (y+1); i < Math.abs(yFinal - y) + y; i++) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (y-1); i >= yFinal; i--) {
                             if (getPieza(xFinal, i) != null) {
-                                if (getPieza(xFinal, i).isColor()) {
+                                if (!getPieza(xFinal, i).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -269,10 +409,9 @@ public class TableroAjedrez implements ITablero {
 
                     // Derecha
                     if (y == yFinal && xFinal > x) {
-                        for (int i = (x+1); i < Math.abs(xFinal - x) + x; i++) {
-                            System.out.println(i);
+                        for (int i = (x+1); i <= xFinal; i++) {
                             if (getPieza(i, yFinal) != null) {
-                                if (getPieza(i, yFinal).isColor()) {
+                                if (!getPieza(i, yFinal).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
@@ -287,9 +426,9 @@ public class TableroAjedrez implements ITablero {
 
                     // Izquierda
                     if (y == yFinal && xFinal < x) {
-                        for (int i = (x-1); i > Math.abs(xFinal - x); i--) {
+                        for (int i = (x-1); i >= xFinal; i--) {
                             if (getPieza(i, yFinal) != null) {
-                                if (getPieza(i, yFinal).isColor()) {
+                                if (!getPieza(i, yFinal).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
