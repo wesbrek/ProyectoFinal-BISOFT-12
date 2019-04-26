@@ -19,17 +19,13 @@ public class Cliente {
 
 	private State activePlayer = new TurnPlayerTwo(this);
 	
-	public Cliente() {
+	private Cliente() {
 		this.jugadores = new ArrayList<Jugador>();
 		this.playerOneState = new TurnPlayerOne(this);
 		this.playerTwoState = new TurnPlayerTwo(this);
 	}
 
-	public Cliente(ArrayList<Jugador> _jugadores) {
-		this.jugadores = _jugadores;
-	}
-
-	private static Cliente getInstance(){
+	public static Cliente getInstance(){
 		if(instanciaUnica == null){
 			instanciaUnica = new Cliente();
 		}

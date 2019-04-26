@@ -13,7 +13,7 @@ import cr.ac.ucenfotec.state.State;
 import cr.ac.ucenfotec.state.TurnPlayerOne;
 
 public class Gestor {
-	static Cliente micliente = new Cliente();
+	static Cliente micliente = Cliente.getInstance();
 
 	
 	public void addPlayers(String name1, String pass1, String name2, String pass2) {
