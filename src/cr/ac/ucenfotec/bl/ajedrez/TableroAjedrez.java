@@ -743,6 +743,17 @@ public class TableroAjedrez implements ITablero {
                 }
 
                 break;
+
+            case REY:
+                // Blanco
+                if (getPieza(x, y).isColor() && ( (getPieza(xFinal, yFinal) != null) ? (getPieza(xFinal, yFinal).isColor() ? true : false) : false)) {
+                    valido = false;
+                }
+                // Negro
+                if (!getPieza(x, y).isColor() && ( (getPieza(xFinal, yFinal) != null) ? (!getPieza(xFinal, yFinal).isColor() ? true : false) : false)) {
+                    valido = false;
+                }
+                break;
         }
         return valido;
     }

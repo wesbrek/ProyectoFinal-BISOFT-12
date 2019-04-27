@@ -54,7 +54,42 @@ public class Rey implements IPieza {
 
     @Override
 	public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
-		return false;
+		boolean valido = false;
+
+		// 1 arriba
+        if (posY+1 == posYFinal && posX == posXFinal) {
+            valido = true;
+        }
+		// 1 arriba-derecha
+        if (posY+1 == posYFinal && posX+1 == posXFinal) {
+            valido = true;
+        }
+        // 1 derecha
+        if (posX+1 == posXFinal && posY == posYFinal) {
+            valido = true;
+        }
+        // 1 derecha-abajo
+        if (posX+1 == posXFinal && posY-1 == posYFinal) {
+            valido = true;
+        }
+        // 1 abajo
+        if (posY-1 == posYFinal && posX == posXFinal) {
+            valido = true;
+        }
+        // 1 abajo-izquierda
+        if (posY-1 == posYFinal && posX-1 == posXFinal) {
+            valido = true;
+        }
+        // 1 izquierda
+        if (posX-1 == posXFinal && posY == posYFinal) {
+            valido = true;
+        }
+        // izquierda-arriba
+        if (posX-1 == posXFinal && posY+1 == posYFinal) {
+            valido = true;
+        }
+
+		return valido;
 	}
 
     @Override
