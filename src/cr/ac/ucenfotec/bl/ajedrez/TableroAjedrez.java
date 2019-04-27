@@ -362,7 +362,7 @@ public class TableroAjedrez implements ITablero {
                 }
 
                 // Negro
-                if (getPieza(x, y).isColor()) {
+                if (!getPieza(x, y).isColor()) {
                     // Arriba-Izquierda
                     if (xFinal < x && yFinal > y) {
                         System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
@@ -571,6 +571,164 @@ public class TableroAjedrez implements ITablero {
                         for (int i = (x-1); i >= xFinal; i--) {
                             if (getPieza(i, yFinal) != null) {
                                 if (!getPieza(i, yFinal).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Blanco
+                if (getPieza(x, y).isColor()) {
+                    // Arriba-Izquierda
+                    if (xFinal < x && yFinal > y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x-1), j = (y+1); i >= xFinal; i--, j++) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Arriba-Derecha
+                    if (xFinal > x && yFinal > y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x+1), j = (y+1); i <= xFinal; i++, j++) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Abajo-Izquierda
+                    if (xFinal < x && yFinal < y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x-1), j = (y-1); i >= xFinal; i--, j--) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Abajo-Derecha
+                    if (xFinal > x && yFinal < y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x+1), j = (y-1); i <= xFinal; i++, j--) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Negro
+                if (!getPieza(x, y).isColor()) {
+                    // Arriba-Izquierda
+                    if (xFinal < x && yFinal > y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x-1), j = (y+1); i >= xFinal; i--, j++) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (!getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Arriba-Derecha
+                    if (xFinal > x && yFinal > y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x+1), j = (y+1); i <= xFinal; i++, j++) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (!getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Abajo-Izquierda
+                    if (xFinal < x && yFinal < y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x-1), j = (y-1); i >= xFinal; i--, j--) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (!getPieza(i, j).isColor()) {
+                                    valido = false;
+                                    continue;
+                                } else {
+                                    if (i != xFinal) {
+                                        valido = false;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Abajo-Derecha
+                    if (xFinal > x && yFinal < y) {
+                        System.out.println(x + "," + xFinal + " - " + y + "," + yFinal);
+                        for (int i = (x+1), j = (y-1); i <= xFinal; i++, j--) {
+                            System.out.println(i + "," + j);
+                            if (getPieza(i, j) != null) {
+                                if (!getPieza(i, j).isColor()) {
                                     valido = false;
                                     continue;
                                 } else {
