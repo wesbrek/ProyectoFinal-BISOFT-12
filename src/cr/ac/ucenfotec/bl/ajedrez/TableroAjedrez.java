@@ -1,14 +1,18 @@
 package cr.ac.ucenfotec.bl.ajedrez;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 
 import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.Cliente;
+import cr.ac.ucenfotec.bl.Movimiento;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
+import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 
 import static cr.ac.ucenfotec.bl.piezas.TipoPieza.PEON;
 
@@ -16,10 +20,12 @@ import static cr.ac.ucenfotec.bl.piezas.TipoPieza.PEON;
 public class TableroAjedrez implements ITablero {
     Casilla[][] casillas;
     private ArrayList<IPieza> piezas;
+    private Queue<Movimiento> movimientos;
 	
 	public TableroAjedrez() {
 	    this.casillas = new Casilla[8][8];
 	    this.piezas = new ArrayList<IPieza>();
+        this.movimientos = new ArrayDeque<Movimiento>();
 
         iniciarCasillas();
         iniciarTablero();
@@ -90,6 +96,8 @@ public class TableroAjedrez implements ITablero {
     public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
         if (getPieza(x, y).validarMovimiento(x, y, xFinal, yFinal, cliente)) {
             if (validarPieza(x, y, xFinal, yFinal)) {
+                movimientos.add(new Movimiento(casillas[x][y].getSimbolo() + PosicionTablero.values()[x] + (y+1),
+                        "" + PosicionTablero.values()[xFinal] + (yFinal+1)));
                 IPieza temp = casillas[x][y].getPieza();
                 casillas[x][y] = new Casilla();
                 casillas[xFinal][yFinal].setPieza(temp);
@@ -761,6 +769,11 @@ public class TableroAjedrez implements ITablero {
     @Override
     public IPieza getPieza(int x, int y) {
         return casillas[x][y].getPieza();
+    }
+
+    @Override
+    public ArrayList<Movimiento> getMovimientos() {
+        return new ArrayList<>(movimientos);
     }
 
     @Override
