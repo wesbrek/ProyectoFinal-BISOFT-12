@@ -83,20 +83,20 @@ public class TableroDamas implements ITablero {
 
     @Override
     public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
-	    boolean valPieza = true;
+	    boolean valExist = true;
         boolean valCapture = false;
-	    boolean valMov = getPieza(x,y).validarMovimiento(x,y,xFinal,yFinal,cliente);
+	    boolean valNormalMov = getPieza(x,y).validarMovimiento(x,y,xFinal,yFinal,cliente);
 
-        if (valMov == true) {
-            valPieza = validarPieza(x, y, xFinal, yFinal);
-        }else if(valMov == false){
+        if (valNormalMov == true) {
+            valExist = validarPieza(x, y, xFinal, yFinal);
+        }else if(valNormalMov == false){
             valCapture = validarCapture(x, y, xFinal, yFinal, cliente);
         }
 
         if(valCapture == true){
-            valPieza = validarPieza(x, y, xFinal ,yFinal);
+            valExist = validarPieza(x, y, xFinal ,yFinal);
         }
-            if(valPieza == false){
+            if(valExist == false){
                 IPieza temp = casillas[x][y].getPieza();
                 casillas[x][y] = new Casilla();
                 casillas[xFinal][yFinal].setPieza(temp);
@@ -110,63 +110,252 @@ public class TableroDamas implements ITablero {
         return false;
     }
 
-    public boolean validarContinuacion(int xFinal, int yFinal, Cliente cliente){
-          if(cliente.getState() == cliente.getPlayerOneState()){
-              if(getPieza(xFinal + 1, yFinal + 1) != null && getPieza(xFinal + 1, yFinal + 1).isColor() == ColorPieza.NEGRO.valueOf() && getPieza(xFinal, yFinal).isColor() == ColorPieza.BLANCO.valueOf() && getPieza( xFinal + 2, yFinal + 2) == null ){
-                  cliente.nextTurn();
-                  return true;
-              }else if(getPieza(xFinal - 1, yFinal + 1) != null && getPieza(xFinal - 1, yFinal + 1).isColor() == ColorPieza.NEGRO.valueOf() && getPieza(xFinal, yFinal).isColor() == ColorPieza.BLANCO.valueOf() && getPieza(xFinal - 2, yFinal + 2) == null){
-                  System.out.println(getPieza(xFinal - 2, yFinal + 2));
-                  cliente.nextTurn();
-                  return true;
-              }
-          }else if(cliente.getState() == cliente.getPlayerTwoState()){
-              if(getPieza(xFinal + 1, yFinal - 1) != null && getPieza(xFinal + 1, yFinal - 1).isColor() == ColorPieza.BLANCO.valueOf() && getPieza(xFinal, yFinal).isColor() == ColorPieza.NEGRO.valueOf() && getPieza(xFinal + 2, yFinal - 2) == null){
-                  cliente.nextTurn();
-                  return true;
-              }else if(getPieza(xFinal - 1, yFinal - 1) != null && getPieza(xFinal - 1, yFinal - 1).isColor() == ColorPieza.BLANCO.valueOf() && getPieza(xFinal, yFinal).isColor() == ColorPieza.NEGRO.valueOf() && getPieza(xFinal - 2, yFinal - 2) == null){
-                  cliente.nextTurn();
-                  return true;
-              }
-          }
-          return false;
-      }
-
-    public boolean validarCapture(int x, int y, int xFinal, int yFinal, Cliente cliente){
-
-	    //Validar turno
-	    if(cliente.getState() == cliente.getPlayerOneState()) {
-            //Comer una pieza negra, diagonal arriba izquierda
-            if (getPieza(x - 1, y + 1) != null && getPieza(x - 1, y + 1).isColor() == ColorPieza.NEGRO.valueOf() && getPieza(x, y).isColor() == ColorPieza.BLANCO.valueOf() && x - 2 == xFinal && y + 2 == yFinal) {
-                casillas[x - 1][y + 1] = new Casilla();
-                return true;
-            //Comer una pieza negra, diagonal arriba derecha
-            } else if (getPieza(x + 1, y + 1) != null && getPieza(x + 1, y + 1).isColor() == ColorPieza.NEGRO.valueOf() && getPieza(x, y).isColor() == ColorPieza.BLANCO.valueOf() && x + 2 == xFinal && y + 2 == yFinal) {
-                casillas[x + 1][y + 1] = new Casilla();
-                return true;
-            }
-        //Validar turno
-        }else if(cliente.getState() == cliente.getPlayerTwoState()){
-	        //Comer una pieza blanca, diagonal abajo derecha
-	        if(getPieza(x + 1, y - 1) != null && getPieza(x + 1, y - 1).isColor() == ColorPieza.BLANCO.valueOf() && getPieza(x,y).isColor() == ColorPieza.NEGRO.valueOf() && x + 2 == xFinal && y - 2 == yFinal){
-	            casillas[x + 1][y - 1] = new Casilla();
-	            return true;
-	        //Comer una pieza blanca, diagonal abajo izquierda
-	        }else if(getPieza(x - 1, y -1)  != null && getPieza(x - 1, y - 1).isColor() == ColorPieza.BLANCO.valueOf() && getPieza(x,y).isColor() == ColorPieza.NEGRO.valueOf() && x - 2 == xFinal && y - 2 == yFinal){
-	            casillas[x - 1][y - 1] = new Casilla();
-	            return true;
-	        }
-	    }
-	    return false;
-    }
-
     public boolean validarPieza(int x, int y, int xFinal, int yFinal) {
         if(getPieza(xFinal, yFinal) != null){
             return true;
         }
-            return false;
+        return false;
     }
 
+    public boolean validarCapture(int x, int y, int xFinal, int yFinal, Cliente cliente){
+        boolean capture = false;
+
+        if(cliente.getState() == cliente.getPlayerOneState()) {
+            boolean whiteCaptureLeft = whiteCaptureLeft(x,y,xFinal,yFinal);
+            boolean whiteCaptureRight = whiteCaptureRight(x,y,xFinal,yFinal);
+            if(whiteCaptureLeft || whiteCaptureRight){
+                capture = true;
+                return capture;
+            }
+
+
+        }else if(cliente.getState() == cliente.getPlayerTwoState()){
+	        boolean blackCaptureLeft = blackCaptureLeft(x,y,xFinal,yFinal);
+	        boolean blackCaptureRight = blackCaptureRight(x,y,xFinal,yFinal);
+	        if(blackCaptureLeft || blackCaptureRight){
+                capture = true;
+                return capture;
+            }
+	    }
+	    return capture;
+    }
+
+    public boolean whiteCaptureLeft(int x, int y, int xFinal, int yFinal){
+
+        boolean capture = false;
+
+        if(getPieza(x - 1, y + 1) == null){
+            return capture;
+        }
+
+        if(getPieza(x, y).isColor() != ColorPieza.BLANCO.valueOf()){
+            return capture;
+        }
+
+        if(getPieza(x - 1, y + 1).isColor() != ColorPieza.NEGRO.valueOf()){
+            return capture;
+        }
+
+        if(x - 2 == xFinal && y + 2 == yFinal){
+            casillas[x - 1][y + 1] = new Casilla();
+            capture = true;
+            return capture;
+        }
+
+        return capture;
+    }
+
+    private boolean whiteCaptureRight(int x, int y, int xFinal, int yFinal){
+	    boolean capture = false;
+
+        if (getPieza(x + 1, y + 1) == null){
+            return capture;
+        }
+
+        if(getPieza(x + 1, y + 1).isColor() != ColorPieza.NEGRO.valueOf()){
+            return capture;
+        }
+
+        if(getPieza(x, y).isColor() != ColorPieza.BLANCO.valueOf()){
+            return capture;
+        }
+
+        if(x + 2 == xFinal && y + 2 == yFinal){
+            casillas[x + 1][y + 1] = new Casilla();
+            capture = true;
+            return capture;
+        }
+
+        return capture;
+    }
+
+    private boolean blackCaptureLeft(int x, int y, int xFinal, int yFinal){
+	    boolean capture = false;
+
+	    if(getPieza(x - 1, y - 1) == null){
+	        return capture;
+        }
+
+	    if(getPieza(x - 1, y - 1).isColor() != ColorPieza.BLANCO.valueOf()){
+	        return capture;
+        }
+
+	    if(getPieza(x,y).isColor() != ColorPieza.NEGRO.valueOf()){
+	        return capture;
+        }
+
+        if (x - 2 == xFinal && y - 2 == yFinal){
+            casillas[x - 1][y - 1] = new Casilla();
+            capture = true;
+            return capture;
+        }
+
+	    return capture;
+    }
+
+    private boolean blackCaptureRight(int x, int y, int xFinal, int yFinal){
+
+	    boolean capture = false;
+
+	    if(getPieza(x + 1, y - 1) == null ){
+	        return capture;
+        }
+
+	    if(getPieza(x + 1, y - 1).isColor() != ColorPieza.BLANCO.valueOf()){
+	        return capture;
+        }
+
+	    if(getPieza(x,y).isColor() != ColorPieza.NEGRO.valueOf()){
+	        return capture;
+        }
+
+	    if(x + 2 == xFinal && y - 2 == yFinal){
+            casillas[x + 1][y - 1] = new Casilla();
+            capture = true;
+            return capture;
+        }
+
+	    return capture;
+    }
+
+
+    public boolean validarContinuacion(int xFinal, int yFinal, Cliente cliente){
+
+	    boolean contin = false;
+        if(cliente.getState() == cliente.getPlayerOneState()){
+                boolean continueWhiteLeft = whiteContinueLeft(xFinal,yFinal);
+                boolean continueWhiteRight = whiteContinueRight(xFinal, yFinal);
+                if(continueWhiteLeft || continueWhiteRight){
+                    cliente.nextTurn();
+                    contin = true;
+                    return contin;
+            }
+        }else if(cliente.getState() == cliente.getPlayerTwoState()){
+            boolean continueBlackRight = blackContinueRight(xFinal,yFinal);
+            boolean continueBlackLeft = blackContinueLeft(xFinal, yFinal);
+            if(continueBlackRight || continueBlackLeft){
+                cliente.nextTurn();
+                contin = true;
+                return contin;
+            }
+        }
+        return contin;
+    }
+
+    public boolean whiteContinueRight(int xFinal, int yFinal){
+
+	    boolean contin = false;
+
+	    if(getPieza(xFinal + 1, yFinal + 1) == null){
+	        return contin;
+        }
+
+	    if(getPieza(xFinal + 1, yFinal + 1).isColor() != ColorPieza.NEGRO.valueOf()){
+	        return contin;
+        }
+
+	    if(getPieza(xFinal, yFinal).isColor() != ColorPieza.BLANCO.valueOf()){
+	        return contin;
+        }
+
+	    if(getPieza( xFinal + 2, yFinal + 2) != null){
+	        return contin;
+        }
+
+	    contin = true;
+
+	    return contin;
+
+    }
+
+    private boolean whiteContinueLeft(int xFinal, int yFinal){
+        boolean contin = false;
+
+        if(getPieza(xFinal - 1, yFinal + 1) == null){
+            return contin;
+        }
+
+        if(getPieza(xFinal - 1, yFinal + 1).isColor() != ColorPieza.NEGRO.valueOf()){
+            return contin;
+        }
+
+        if(getPieza(xFinal,yFinal).isColor() != ColorPieza.BLANCO.valueOf()){
+            return contin;
+        }
+
+        if(getPieza(xFinal + 2, yFinal + 2) != null){
+            return contin;
+        }
+
+        contin = true;
+        return contin;
+    }
+
+    private boolean blackContinueRight(int xFinal, int yFinal){
+	    boolean contin = false;
+
+        if(getPieza(xFinal + 1, yFinal - 1) == null){
+            return contin;
+        }
+
+        if(getPieza(xFinal + 1, yFinal - 1).isColor() != ColorPieza.BLANCO.valueOf()){
+            return contin;
+        }
+
+        if(getPieza(xFinal,yFinal).isColor() != ColorPieza.NEGRO.valueOf()){
+            return contin;
+        }
+
+        if(getPieza(xFinal + 2, yFinal - 2) != null){
+            return contin;
+        }
+
+	    contin = true;
+	    return contin;
+    }
+
+    private boolean blackContinueLeft(int xFinal, int yFinal){
+        boolean contin = false;
+
+        if(getPieza(xFinal - 1, yFinal - 1) == null){
+            return contin;
+        }
+
+        if(getPieza(xFinal - 1, yFinal - 1).isColor() != ColorPieza.BLANCO.valueOf()){
+            return contin;
+        }
+
+        if(getPieza(xFinal,yFinal).isColor() != ColorPieza.NEGRO.valueOf()){
+            return contin;
+        }
+
+        if(getPieza(xFinal - 2, yFinal - 2) != null){
+            return contin;
+        }
+
+        contin = true;
+        return contin;
+    }
 
     @Override
     public IPieza getPieza(int x, int y) {
