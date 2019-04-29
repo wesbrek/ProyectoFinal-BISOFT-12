@@ -54,4 +54,14 @@ public class PiezaGo implements IPieza {
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
         return false;
     }
+
+    @Override
+    public void setMejora(boolean mejora) {
+
+    }
+
+    @Override
+    public boolean getMejora() {
+        return false;
+    }
 }

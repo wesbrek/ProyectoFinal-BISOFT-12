@@ -101,6 +101,16 @@ public class Peon implements IPieza {
         return valido;
     }
 
+    @Override
+    public void setMejora(boolean mejora) {
+
+    }
+
+    @Override
+    public boolean getMejora() {
+        return false;
+    }
+
     public void mejorar(IPieza mitipoPieza){
         this.mejora = mitipoPieza;
     }

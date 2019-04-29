@@ -10,5 +10,7 @@ public interface IPieza {
     boolean isColor();
     String getSimbolo();
     boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente);
+    void setMejora(boolean mejora);
+    boolean getMejora();
     //boolean clavada();
 }

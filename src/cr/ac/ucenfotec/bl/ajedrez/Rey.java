@@ -93,6 +93,16 @@ public class Rey implements IPieza {
 	}
 
     @Override
+    public void setMejora(boolean mejora) {
+
+    }
+
+    @Override
+    public boolean getMejora() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "Rey{}";
     }

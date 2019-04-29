@@ -45,13 +45,54 @@ public class Gestor {
 	}
 
 	public boolean moverPieza(String command){
-		command.trim();
-		String xInicial = String.valueOf(command.charAt(0));
-		int yInicial = Integer.parseInt(String.valueOf(command.charAt(1))) - 1;
-        String xFinal = String.valueOf(command.charAt(2));
-        int yFinal = Integer.parseInt(String.valueOf(command.charAt(3))) - 1;
+		command.replaceAll("\\s+","");
+		String xInicial = "";
+		String  xFinal = "";
+		int yInicial = 0;
+		int yFinal = 0;
+		String total = "";
+		boolean isNumeric1 = isNumeric(command.charAt(2));
+		boolean isNumeric2 = isNumeric(command.charAt(3));
+		if(command.length() == 4){
+			 xInicial = String.valueOf(command.charAt(0));
+			 yInicial = Integer.parseInt(String.valueOf(command.charAt(1))) - 1;
+			 xFinal = String.valueOf(command.charAt(2));
+			 yFinal = Integer.parseInt(String.valueOf(command.charAt(3))) - 1;
+		}else if(command.length() == 5){
+			xInicial = String.valueOf(command.charAt(0));
+			 if(isNumeric1 == true){
+			 	total = String.valueOf(command.charAt(1)) + String.valueOf(command.charAt(2));
+				 xFinal = String.valueOf(command.charAt(3));
+				 yInicial = Integer.parseInt(total) - 1;
+				 yFinal = Integer.parseInt(String.valueOf(command.charAt(4))) - 1;
+			 }else if(isNumeric2 == true){
+			 	total = String.valueOf(command.charAt(3)) + String.valueOf(command.charAt(4));
+				 yInicial = Integer.parseInt(String.valueOf(command.charAt(1))) - 1;
+				 xFinal = String.valueOf(command.charAt(2));
+				 yFinal = Integer.parseInt(total) - 1;
+			 }
+		}else if(command.length() == 6){
+			 xInicial = String.valueOf(command.charAt(0));
+			 yInicial = Integer.parseInt(String.valueOf(command.charAt(1))) + Integer.parseInt(String.valueOf(command.charAt(2))) - 1;
+			 xFinal = String.valueOf(command.charAt(3));
+			 yFinal = Integer.parseInt(String.valueOf(command.charAt(4))) + Integer.parseInt(String.valueOf(command.charAt(5))) - 1;
+		}
+
 
         return micliente.moverPieza(toEnum(xInicial).intValueOf(), yInicial, toEnum(xFinal).intValueOf(), yFinal, micliente);
+	}
+
+	private boolean isNumeric(char command){
+		boolean resultado;
+
+		try {
+			Integer.parseInt(String.valueOf(command));
+			resultado = true;
+		} catch (NumberFormatException excepcion) {
+			resultado = false;
+		}
+
+		return resultado;
 	}
 
 	private PosicionTablero toEnum(String pos){

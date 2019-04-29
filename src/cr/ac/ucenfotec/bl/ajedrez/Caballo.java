@@ -75,6 +75,17 @@ public class Caballo implements IPieza {
         }
         return valido;
     }
+
+    @Override
+    public void setMejora(boolean mejora) {
+
+    }
+
+    @Override
+    public boolean getMejora() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Caballo{}";
