@@ -114,4 +114,8 @@ public class Cliente {
     public TipoJuego getTipoJuego(){
 	    return this.tipoJuego;
     }
+
+    public ITablero getTablero(){
+		return this.juego;
+	}
 }

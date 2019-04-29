@@ -118,8 +118,8 @@ public class TableroDamas implements ITablero {
 
         if(valCapture == true && valCrowned == false && valExist == false){
             val = true;
-        }
 
+        }
         if(valCrowned == true && valExist == false){
            val = true;
         }
@@ -851,6 +851,37 @@ public class TableroDamas implements ITablero {
 
         return salida;
 	}
+
+    @Override
+    public int checkWinner() {
+
+	    int j1 = 0;
+	    int j2 = 0;
+	    int noWinner = 0;
+
+	    for(int x = 0; x < casillas.length; x++){
+	        for(int y = 0; y < casillas.length; y++){
+	            if(casillas[x][y].getPieza() != null){
+                    if(casillas[x][y].getPieza().isColor() == ColorPieza.BLANCO.valueOf()){
+                        j1++;
+                    }else if(casillas[x][y].getPieza().isColor() == ColorPieza.NEGRO.valueOf()){
+                        j2++;
+                    }
+                }
+
+            }
+        }
+
+	    if(j1 > 0 && j2 == 0){
+	       return j1;
+        }
+
+	    if(j1 == 0 && j2 > 0){
+	        return j2;
+        }
+
+        return noWinner;
+    }
 
     public static class Builder {
         private ArrayList<IPieza> piezas = new ArrayList<IPieza>();

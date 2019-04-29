@@ -14,5 +14,6 @@ public interface ITablero {
     IPieza getPieza(int x, int y);
     ArrayList<Movimiento> getMovimientos();
     String toString();
+    int checkWinner();
 
 }

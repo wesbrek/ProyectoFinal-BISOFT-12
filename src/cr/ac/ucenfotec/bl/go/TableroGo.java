@@ -87,6 +87,11 @@ public class TableroGo implements ITablero {
         return salida;
 	}
 
+    @Override
+    public int checkWinner() {
+        return 0;
+    }
+
     public static class Builder {
         private ArrayList<IPieza> piezas = new ArrayList<IPieza>();
 
