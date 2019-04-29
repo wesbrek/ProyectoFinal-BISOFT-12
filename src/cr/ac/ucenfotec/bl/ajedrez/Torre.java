@@ -69,7 +69,17 @@ public class Torre implements IPieza {
 		return valido;
 	}
 
-    @Override
+	@Override
+	public void setMejora(boolean mejora) {
+
+	}
+
+	@Override
+	public boolean getMejora() {
+		return false;
+	}
+
+	@Override
     public String toString() {
         return "Torre{}";
     }

@@ -9,7 +9,7 @@ public class PiezaDama implements IPieza {
     int posX;
     int posY;
     boolean color;
-    IPieza mejora;
+    boolean mejora;
     boolean capture;
     String simbolo = "D";
     public PiezaDama() {
@@ -24,7 +24,7 @@ public class PiezaDama implements IPieza {
         this.posX = posX;
         this.posY = posY;
         this.color = color.valueOf();
-        this.mejora = null;
+        this.mejora = false;
         this.capture = false;
     }
 
@@ -62,9 +62,9 @@ public class PiezaDama implements IPieza {
     @Override
     public boolean validarMovimiento(int posX, int posY, int posXFinal, int posYFinal, Cliente cliente) {
 
-        if(this.mejora != null) {
+        if(this.mejora == true) {
            //Movimiento mejorado
-        }else if(this.mejora == null){
+        }else if(this.mejora == false){
 
             if(this.color == ColorPieza.BLANCO.valueOf() && cliente.getState() == cliente.getPlayerOneState()){
                 if(posX -1 == posXFinal && posY + 1 == posYFinal){
@@ -83,6 +83,18 @@ public class PiezaDama implements IPieza {
         return false;
     }
 
+    @Override
+    public void setMejora(boolean mejora) {
+        if(mejora == true) {
+            this.simbolo = "M";
+        }
+        this.mejora = mejora;
+    }
+
+    @Override
+    public boolean getMejora() {
+        return this.mejora;
+    }
 
 
     @Override
@@ -90,7 +102,4 @@ public class PiezaDama implements IPieza {
         return "PiezaDama{}";
     }
 
-    public void mejorar(IPieza mitipoPieza){
-        this.mejora = mitipoPieza;
-    }
 }
