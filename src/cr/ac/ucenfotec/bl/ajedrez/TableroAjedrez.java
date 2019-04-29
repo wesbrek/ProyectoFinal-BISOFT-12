@@ -145,7 +145,12 @@ public class TableroAjedrez implements ITablero {
         return salida;
 	}
 
-	public static class Builder {
+    @Override
+    public int checkWinner() {
+        return 0;
+    }
+
+    public static class Builder {
         private ArrayList<IPieza> piezas = new ArrayList<IPieza>();
 
         public Builder(){
