@@ -2,6 +2,7 @@ package cr.ac.ucenfotec.bl.damas;
 
 import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.Cliente;
+import cr.ac.ucenfotec.bl.Movimiento;
 import cr.ac.ucenfotec.bl.piezas.ColorPieza;
 import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
 import cr.ac.ucenfotec.bl.piezas.TipoPieza;
@@ -11,17 +12,21 @@ import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.state.State;
 
 import java.awt.*;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TableroDamas implements ITablero {
     Casilla[][] casillas;
     private ArrayList<IPieza> piezas;
     private boolean continuacion;
+    private Queue<Movimiento> movimientos;
 	
 	public TableroDamas() {
         this.casillas = new Casilla[10][10];
 		this.piezas = new ArrayList<IPieza>();
+        this.movimientos = new ArrayDeque<Movimiento>();
 
         iniciarCasillas();
         iniciarTablero();
@@ -86,6 +91,8 @@ public class TableroDamas implements ITablero {
 	    boolean valExist = true;
         boolean valCapture = false;
 	    boolean valNormalMov = getPieza(x,y).validarMovimiento(x,y,xFinal,yFinal,cliente);
+
+        movimientos.add(new Movimiento(""+(x+1+10*y),""+(xFinal+1+10*yFinal)));
 
         if (valNormalMov == true) {
             valExist = validarPieza(x, y, xFinal, yFinal);
@@ -360,6 +367,11 @@ public class TableroDamas implements ITablero {
     @Override
     public IPieza getPieza(int x, int y) {
         return casillas[x][y].getPieza();
+    }
+
+    @Override
+    public ArrayList<Movimiento> getMovimientos() {
+        return new ArrayList<>(movimientos);
     }
 
     @Override

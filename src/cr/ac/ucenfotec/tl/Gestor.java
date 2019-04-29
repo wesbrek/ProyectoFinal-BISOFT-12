@@ -9,12 +9,12 @@ import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
+import cr.ac.ucenfotec.dl.TextFileStorage;
 import cr.ac.ucenfotec.state.State;
 import cr.ac.ucenfotec.state.TurnPlayerOne;
 
 public class Gestor {
 	static Cliente micliente = Cliente.getInstance();
-
 	
 	public void addPlayers(String name1, String pass1, String name2, String pass2) {
 		ArrayList<Jugador> mijugadores = new ArrayList<Jugador>();
@@ -69,4 +69,20 @@ public class Gestor {
 	public void restartState(){
 		micliente.setState(micliente.getPlayerTwoState());
 	}
+
+	public void saveGame(){
+
+        TextFileStorage tfe = new TextFileStorage();
+        switch (micliente.getTipoJuego()){
+            case AJEDREZ:
+                tfe.saveAjedrez(micliente.serializeMovements());
+                break;
+            case GO:
+                tfe.saveGo(micliente.serializeMovements());
+                break;
+            case DAMAS:
+                tfe.saveDamas(micliente.serializeMovements());
+                break;
+        }
+    }
 }
