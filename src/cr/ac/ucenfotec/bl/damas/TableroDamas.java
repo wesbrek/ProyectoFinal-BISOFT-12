@@ -124,6 +124,7 @@ public class TableroDamas implements ITablero {
            val = true;
         }
             if(val == true){
+                movimientos.add(new Movimiento(""+(x+1+10*y),""+(xFinal+1+10*yFinal)));
                 IPieza temp = casillas[x][y].getPieza();
                 casillas[x][y] = new Casilla();
                 casillas[xFinal][yFinal].setPieza(temp);
