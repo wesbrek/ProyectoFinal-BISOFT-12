@@ -114,4 +114,9 @@ public class Cliente {
     public TipoJuego getTipoJuego(){
 	    return this.tipoJuego;
     }
+
+    public ArrayList<Movimiento> loadGame(TipoJuego tipo, String partida) {
+         ISerializer serializer = SerializerFactory.getSerializer(tipo);
+        return serializer.deserialize(partida);
+    }
 }

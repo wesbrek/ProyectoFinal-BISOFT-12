@@ -9,4 +9,9 @@ public class GoSerializer implements ISerializer {
     public String serialize(ArrayList<Movimiento> movimientos) {
         return null;
     }
+
+    @Override
+    public ArrayList<Movimiento> deserialize(String partida) {
+        return null;
+    }
 }
