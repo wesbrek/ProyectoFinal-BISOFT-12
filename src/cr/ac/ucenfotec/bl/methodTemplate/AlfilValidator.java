@@ -3,8 +3,8 @@ package cr.ac.ucenfotec.bl.methodTemplate;
 import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.Cliente;
 
-public class AlflValidator extends PieceMovementComponent {
-    public AlflValidator(int xInicial, int yInicial, int xFinal, int yFinal, Casilla[][] casillas, Cliente cliente) {
+public class AlfilValidator extends PieceMovementComponent {
+    public AlfilValidator(int xInicial, int yInicial, int xFinal, int yFinal, Casilla[][] casillas, Cliente cliente) {
         super(xInicial, yInicial, xFinal, yFinal, casillas, cliente);
     }
 
@@ -15,9 +15,7 @@ public class AlflValidator extends PieceMovementComponent {
         if (piezaInicio.isColor()) {
             // Arriba-Izquierda
             if (xFinal < xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial+1); i >= xFinal; i--, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -34,9 +32,7 @@ public class AlflValidator extends PieceMovementComponent {
 
             // Arriba-Derecha
             if (xFinal > xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial+1); i <= xFinal; i++, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -53,9 +49,7 @@ public class AlflValidator extends PieceMovementComponent {
 
             // Abajo-Izquierda
             if (xFinal < xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial-1); i >= xFinal; i--, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -72,9 +66,7 @@ public class AlflValidator extends PieceMovementComponent {
 
             // Abajo-Derecha
             if (xFinal > xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial-1); i <= xFinal; i++, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -94,9 +86,7 @@ public class AlflValidator extends PieceMovementComponent {
         if (!piezaInicio.isColor()) {
             // Arriba-Izquierda
             if (xFinal < xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial+1); i >= xFinal; i--, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -113,9 +103,7 @@ public class AlflValidator extends PieceMovementComponent {
 
             // Arriba-Derecha
             if (xFinal > xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial+1); i <= xFinal; i++, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -132,9 +120,7 @@ public class AlflValidator extends PieceMovementComponent {
 
             // Abajo-Izquierda
             if (xFinal < xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial-1); i >= xFinal; i--, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -151,9 +137,7 @@ public class AlflValidator extends PieceMovementComponent {
 
             // Abajo-Derecha
             if (xFinal > xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial-1); i <= xFinal; i++, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;

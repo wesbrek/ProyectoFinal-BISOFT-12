@@ -11,7 +11,7 @@ public class PieceMovementFactory {
             case PEON:
                 return new PeonValidator(x, y, xFinal, yFinal, casillas, cliente);
             case ALFIL:
-                return new AlflValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new AlfilValidator(x, y, xFinal, yFinal, casillas, cliente);
             case TORRE:
                 return new TorreValidator(x, y, xFinal, yFinal, casillas, cliente);
             case CABALLO:

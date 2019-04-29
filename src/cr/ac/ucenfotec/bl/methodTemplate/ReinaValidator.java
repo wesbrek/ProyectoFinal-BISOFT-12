@@ -157,9 +157,7 @@ public class ReinaValidator extends PieceMovementComponent {
         if (piezaInicio.isColor()) {
             // Arriba-Izquierda
             if (xFinal < xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial+1); i >= xFinal; i--, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -176,9 +174,7 @@ public class ReinaValidator extends PieceMovementComponent {
 
             // Arriba-Derecha
             if (xFinal > xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial+1); i <= xFinal; i++, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -195,9 +191,7 @@ public class ReinaValidator extends PieceMovementComponent {
 
             // Abajo-Izquierda
             if (xFinal < xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial-1); i >= xFinal; i--, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -214,9 +208,7 @@ public class ReinaValidator extends PieceMovementComponent {
 
             // Abajo-Derecha
             if (xFinal > xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial-1); i <= xFinal; i++, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -236,9 +228,7 @@ public class ReinaValidator extends PieceMovementComponent {
         if (!piezaInicio.isColor()) {
             // Arriba-Izquierda
             if (xFinal < xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial+1); i >= xFinal; i--, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -255,9 +245,7 @@ public class ReinaValidator extends PieceMovementComponent {
 
             // Arriba-Derecha
             if (xFinal > xInicial && yFinal > yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial+1); i <= xFinal; i++, j++) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -274,9 +262,7 @@ public class ReinaValidator extends PieceMovementComponent {
 
             // Abajo-Izquierda
             if (xFinal < xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial-1), j = (yInicial-1); i >= xFinal; i--, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
@@ -293,9 +279,7 @@ public class ReinaValidator extends PieceMovementComponent {
 
             // Abajo-Derecha
             if (xFinal > xInicial && yFinal < yInicial) {
-                System.out.println(xInicial + "," + xFinal + " - " + yInicial + "," + yFinal);
                 for (int i = (xInicial+1), j = (yInicial-1); i <= xFinal; i++, j--) {
-                    System.out.println(i + "," + j);
                     if (casillas[i][j].getPieza() != null) {
                         if (!casillas[i][j].getPieza().isColor()) {
                             valido = false;
