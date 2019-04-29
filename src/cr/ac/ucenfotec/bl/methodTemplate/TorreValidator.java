@@ -15,7 +15,7 @@ public class TorreValidator extends PieceMovementComponent {
         if (piezaInicio.isColor()) {
             // Arriba
             if (xInicial == xFinal && yFinal > yInicial) {
-                for (int i = (yInicial+1); i <= yFinal; i++) {
+                for (int i = (yInicial+1); i < yFinal; i++) {
                     if (casillas[xFinal][i].getPieza() != null) {
                         if (!casillas[xFinal][i].getPieza().isColor()) {
                             valido = false;
@@ -32,7 +32,7 @@ public class TorreValidator extends PieceMovementComponent {
 
             // Abajo
             if (xInicial == xFinal && yFinal < yInicial) {
-                for (int i = (yInicial-1); i >= yFinal; i--) {
+                for (int i = (yInicial-1); i > yFinal; i--) {
                     if (casillas[xFinal][i].getPieza() != null) {
                         if (!casillas[xFinal][i].getPieza().isColor()) {
                             valido = false;
@@ -49,7 +49,7 @@ public class TorreValidator extends PieceMovementComponent {
 
             // Derecha
             if (yInicial == yFinal && xFinal > xInicial) {
-                for (int i = (xInicial+1); i <= xFinal; i++) {
+                for (int i = (xInicial+1); i < xFinal; i++) {
                     if (casillas[i][yFinal].getPieza() != null) {
                         if (!casillas[i][yFinal].getPieza().isColor()) {
                             valido = false;
@@ -66,7 +66,7 @@ public class TorreValidator extends PieceMovementComponent {
 
             // Izquierda
             if (yInicial == yFinal && xFinal < xInicial) {
-                for (int i = (xInicial-1); i >= xFinal; i--) {
+                for (int i = (xInicial-1); i > xFinal; i--) {
                     if (casillas[i][yFinal].getPieza() != null) {
                         if (!casillas[i][yFinal].getPieza().isColor()) {
                             valido = false;
@@ -86,7 +86,7 @@ public class TorreValidator extends PieceMovementComponent {
         if (!piezaInicio.isColor()) {
             // Arriba
             if (xInicial == xFinal && yFinal > yInicial) {
-                for (int i = (yInicial+1); i <= yFinal; i++) {
+                for (int i = (yInicial+1); i < yFinal; i++) {
                     if (casillas[xFinal][i].getPieza() != null) {
                         if (!casillas[xFinal][i].getPieza().isColor()) {
                             valido = false;
@@ -103,7 +103,7 @@ public class TorreValidator extends PieceMovementComponent {
 
             // Abajo
             if (xInicial == xFinal && yFinal < yInicial) {
-                for (int i = (yInicial-1); i >= yFinal; i--) {
+                for (int i = (yInicial-1); i > yFinal; i--) {
                     if (casillas[xFinal][i].getPieza() != null) {
                         if (!casillas[xFinal][i].getPieza().isColor()) {
                             valido = false;
@@ -120,7 +120,7 @@ public class TorreValidator extends PieceMovementComponent {
 
             // Derecha
             if (yInicial == yFinal && xFinal > xInicial) {
-                for (int i = (xInicial+1); i <= xFinal; i++) {
+                for (int i = (xInicial+1); i < xFinal; i++) {
                     if (casillas[i][yFinal].getPieza() != null) {
                         if (!casillas[i][yFinal].getPieza().isColor()) {
                             valido = false;
@@ -137,7 +137,7 @@ public class TorreValidator extends PieceMovementComponent {
 
             // Izquierda
             if (yInicial == yFinal && xFinal < xInicial) {
-                for (int i = (xInicial-1); i >= xFinal; i--) {
+                for (int i = (xInicial-1); i > xFinal; i--) {
                     if (casillas[i][yFinal].getPieza() != null) {
                         if (!casillas[i][yFinal].getPieza().isColor()) {
                             valido = false;
