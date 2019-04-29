@@ -127,7 +127,7 @@ public class Gestor {
         }
     }
 
-    public int winner(){
+    public int checkWinner(){
 		int winner = micliente.getTablero().checkWinner();
 
 		return winner;
