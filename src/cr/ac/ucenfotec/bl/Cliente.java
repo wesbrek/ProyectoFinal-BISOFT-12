@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
+import cr.ac.ucenfotec.dl.TextFileStorage;
 import cr.ac.ucenfotec.state.State;
 import cr.ac.ucenfotec.state.TurnPlayerOne;
 import cr.ac.ucenfotec.state.TurnPlayerTwo;
@@ -15,6 +16,7 @@ public class Cliente {
 	private State playerOneState;
 	private State playerTwoState;
 	private static Cliente instanciaUnica;
+	private TipoJuego tipoJuego;
 
 
 	private State activePlayer = new TurnPlayerTwo(this);
@@ -23,6 +25,7 @@ public class Cliente {
 		this.jugadores = new ArrayList<Jugador>();
 		this.playerOneState = new TurnPlayerOne(this);
 		this.playerTwoState = new TurnPlayerTwo(this);
+        tipoJuego = null;
 	}
 
 	public static Cliente getInstance(){
@@ -33,9 +36,8 @@ public class Cliente {
 	}
 
 	public void iniciarPartida(TipoJuego tipoJuego) {
-		//Validar el tipo de juego.
-
         juego = TableroFactory.getTablero(tipoJuego);
+        this.tipoJuego = tipoJuego;
 	}
 	
 	public void registrarJugador(String name, String password) {
@@ -99,5 +101,27 @@ public class Cliente {
 
     public String imprimirTablero() {
         return juego.toString();
+    }
+
+    public String serializeMovements(){
+	    ArrayList<Movimiento> movimientos = juego.getMovimientos();
+        StringBuilder output = new StringBuilder();
+        int contador = 1;
+        int jugada = 1;
+
+        for (Movimiento e : movimientos) {
+            if(contador % 2 != 0) {
+                output.append(jugada++);
+                output.append(". ");
+            }
+            output.append(e.toString());
+            output.append(" ");
+            contador++;
+        }
+        return output.toString();
+    }
+
+    public TipoJuego getTipoJuego(){
+	    return this.tipoJuego;
     }
 }

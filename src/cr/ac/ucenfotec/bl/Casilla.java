@@ -20,6 +20,7 @@ public class Casilla {
         this.pieza = pieza;
         this.posX = posX;
         this.posY = posY;
+        this.simbolo = pieza.getSimbolo();
     }
 
     public IPieza getPieza() {
@@ -30,6 +31,7 @@ public class Casilla {
         this.pieza = pieza;
         this.posX = pieza.getPosX();
         this.posY = pieza.getPosY();
+        this.simbolo = pieza.getSimbolo();
     }
 
     public int getPosX() {

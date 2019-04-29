@@ -2,10 +2,12 @@ package cr.ac.ucenfotec.bl.go;
 
 import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.Cliente;
+import cr.ac.ucenfotec.bl.Movimiento;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.piezas.IPieza;
 
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Set;
 
 public class TableroGo implements ITablero {
@@ -59,6 +61,11 @@ public class TableroGo implements ITablero {
 
     @Override
     public IPieza getPieza(int x, int y) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Movimiento> getMovimientos() {
         return null;
     }
 
