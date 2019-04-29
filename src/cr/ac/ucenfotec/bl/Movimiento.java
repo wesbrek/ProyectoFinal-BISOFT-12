@@ -1,32 +1,32 @@
 package cr.ac.ucenfotec.bl;
 
 public class Movimiento {
-    private String inicio;
-    private String fin;
+    private String moveFrom;
+    private String moveTo;
 
-    public Movimiento(String inicio, String fin) {
-        this.inicio = inicio;
-        this.fin = fin;
+    public Movimiento(String moveFrom, String moveTo) {
+        this.moveFrom = moveFrom;
+        this.moveTo = moveTo;
     }
 
-    public String getInicio() {
-        return inicio;
+    public String getMoveFrom() {
+        return moveFrom;
     }
 
-    public void setInicio(String inicio) {
-        this.inicio = inicio;
+    public void setMoveFrom(String moveFrom) {
+        this.moveFrom = moveFrom;
     }
 
-    public String getFin() {
-        return fin;
+    public String getMoveTo() {
+        return moveTo;
     }
 
-    public void setFin(String fin) {
-        this.fin = fin;
+    public void setMoveTo(String moveTo) {
+        this.moveTo = moveTo;
     }
 
     @Override
     public String toString() {
-        return inicio + "-" + fin;
+        return moveFrom + "-" + moveTo;
     }
 }

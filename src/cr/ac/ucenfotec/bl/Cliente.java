@@ -2,6 +2,8 @@ package cr.ac.ucenfotec.bl;
 
 import java.util.ArrayList;
 
+import cr.ac.ucenfotec.bl.serializer.ISerializer;
+import cr.ac.ucenfotec.bl.serializer.SerializerFactory;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
@@ -104,21 +106,9 @@ public class Cliente {
     }
 
     public String serializeMovements(){
-	    ArrayList<Movimiento> movimientos = juego.getMovimientos();
-        StringBuilder output = new StringBuilder();
-        int contador = 1;
-        int jugada = 1;
+        ISerializer serializer = SerializerFactory.getSerializer(tipoJuego);
 
-        for (Movimiento e : movimientos) {
-            if(contador % 2 != 0) {
-                output.append(jugada++);
-                output.append(". ");
-            }
-            output.append(e.toString());
-            output.append(" ");
-            contador++;
-        }
-        return output.toString();
+        return serializer.serialize(juego.getMovimientos());
     }
 
     public TipoJuego getTipoJuego(){
