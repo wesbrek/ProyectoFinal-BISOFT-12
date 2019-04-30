@@ -147,7 +147,34 @@ public class TableroAjedrez implements ITablero {
 
     @Override
     public int checkWinner() {
-        return 0;
+	    // No Winner = 0
+	    // J1 = 1
+        // J2 = 2
+
+        int winner = 0;
+        boolean whiteKing = false;
+        boolean blackKing = false;
+
+        for (int x = 0; x < casillas.length; x++) {
+            for (int y = 0; y < casillas.length; y++) {
+                if (casillas[x][y].getPieza() != null) {
+                    if (getPieza(x, y).getSimbolo().equalsIgnoreCase("K") && getPieza(x, y).isColor()) {
+                        whiteKing = true;
+                    } else if (getPieza(x, y).getSimbolo().equalsIgnoreCase("K") && !getPieza(x, y).isColor()){
+                        blackKing = true;
+                    }
+                }
+
+            }
+        }
+
+        if (!whiteKing) {
+            winner = 2;
+        } else if (!blackKing) {
+            winner = 1;
+        }
+
+        return winner;
     }
 
     public static class Builder {
