@@ -385,7 +385,7 @@ public class TableroDamas implements ITablero {
 
         boolean capture = false;
 
-        if(x - 1 < 0 || y + 1 == 10){
+        if(x - 1 < 0 || y + 1 >= 10){
             return capture;
         }
 
@@ -414,7 +414,7 @@ public class TableroDamas implements ITablero {
     private boolean whiteCaptureRight(int x, int y, int xFinal, int yFinal){
 	    boolean capture = false;
 
-        if(x + 1 == 10 || y + 1 == 10){
+        if(x + 1 >= 10 || y + 1 >= 10){
             return capture;
         }
 
@@ -471,7 +471,7 @@ public class TableroDamas implements ITablero {
 
 	    boolean capture = false;
 
-        if(x + 1 == 10 || y - 1 < 0){
+        if(x + 1 >= 10 || y - 1 < 0){
             return capture;
         }
 
@@ -524,6 +524,14 @@ public class TableroDamas implements ITablero {
 
 	    boolean contin = false;
 
+	    if(xFinal + 1 >= 10 || yFinal + 1 >= 10){
+	        return contin;
+        }
+
+	    if(xFinal + 2 >= 10 || yFinal + 2 >= 10){
+	        return contin;
+        }
+
 	    if(getPieza(xFinal + 1, yFinal + 1) == null){
 	        return contin;
         }
@@ -549,8 +557,11 @@ public class TableroDamas implements ITablero {
     private boolean whiteContinueLeft(int xFinal, int yFinal){
         boolean contin = false;
 
+        if(xFinal - 1 < 0 || yFinal + 1 >= 10){
+            return contin;
+        }
 
-        if(xFinal - 1 < 0 || yFinal + 1 == 10){
+        if(xFinal - 2 < 0 || yFinal + 2 >= 10){
             return contin;
         }
 
@@ -566,7 +577,7 @@ public class TableroDamas implements ITablero {
             return contin;
         }
 
-        if(getPieza(xFinal + 2, yFinal + 2) != null){
+        if(getPieza(xFinal - 2, yFinal + 2) != null){
             return contin;
         }
 
@@ -577,7 +588,11 @@ public class TableroDamas implements ITablero {
     private boolean blackContinueRight(int xFinal, int yFinal){
 	    boolean contin = false;
 
-        if(xFinal + 1 == 10 || yFinal - 1 < 0){
+        if(xFinal + 1 >= 10 || yFinal - 1 < 0){
+            return contin;
+        }
+
+        if(xFinal + 2 >= 10 || yFinal - 2 < 0){
             return contin;
         }
 
@@ -605,6 +620,10 @@ public class TableroDamas implements ITablero {
         boolean contin = false;
 
         if(xFinal - 1 < 0 || yFinal - 1 < 0){
+            return contin;
+        }
+
+        if(xFinal - 2 < 0 || yFinal - 2 < 0){
             return contin;
         }
 
@@ -794,7 +813,7 @@ public class TableroDamas implements ITablero {
 
     public boolean whiteCrownedMove(int x, int y, int xFinal, int yFinal, int xOriginal, int yOriginal){
 	    boolean move = false;
-        if(xFinal + 1 < 10 && yFinal + 1 < 10 && getPieza(xFinal + 1, yFinal + 1) != null && x - 2 == xFinal && y - 2 == yFinal){
+        if(xFinal + 1 <= 10 && yFinal + 1 < 10 && getPieza(xFinal + 1, yFinal + 1) != null && x - 2 == xFinal && y - 2 == yFinal){
             //Abajo izquierda
             if(getPieza(xOriginal,yOriginal).isColor() == ColorPieza.BLANCO.valueOf() && getPieza(xFinal + 1 ,yFinal + 1).isColor() == ColorPieza.NEGRO.valueOf()){
                 casillas[xFinal + 1][yFinal + 1] = new Casilla();
