@@ -95,9 +95,6 @@ public class Peon implements IPieza {
             }
         }
 
-
-
-
         return valido;
     }
 

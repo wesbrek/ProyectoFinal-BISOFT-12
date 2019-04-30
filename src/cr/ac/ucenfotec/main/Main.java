@@ -1,14 +1,5 @@
 package cr.ac.ucenfotec.main;
 
-import cr.ac.ucenfotec.bl.Jugador.JugadorBuilder;
-import cr.ac.ucenfotec.bl.ajedrez.TableroAjedrez;
-import cr.ac.ucenfotec.bl.damas.TableroDamas;
-import cr.ac.ucenfotec.bl.piezas.ColorPieza;
-import cr.ac.ucenfotec.bl.piezas.PiezaFactory;
-import cr.ac.ucenfotec.bl.piezas.TipoPieza;
-import cr.ac.ucenfotec.bl.tablero.ITablero;
-import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
-import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.tl.Gestor;
 
@@ -148,7 +139,7 @@ public class Main {
         }
 
         public static void reproducirJuego(TipoJuego juego) throws IOException{
-            controller.loadGame(juego);
+            System.out.println(controller.loadGame(juego));
             System.out.println("Partida cargada con exito");
             opcionesJuego(juego);
         }
@@ -219,11 +210,13 @@ public class Main {
 
             System.out.println("Juego reiniciado");
             if (juego == TipoJuego.AJEDREZ) {
-            empezarAjerdrez();
-             } else if (juego == TipoJuego.DAMAS) {
-            empezarDamas();
-            } else if (juego == TipoJuego.GO) {
-            empezarGo();
+                empezarAjerdrez();
+             }
+             else if (juego == TipoJuego.DAMAS) {
+                empezarDamas();
+            }
+            else if (juego == TipoJuego.GO) {
+                empezarGo();
             }
     }
 
@@ -240,7 +233,7 @@ public class Main {
         }
 
 
-        public static void moverPieza (TipoJuego juego) throws IOException {
+        public static void moverPieza(TipoJuego juego) throws IOException {
             boolean move = false;
 
             do {
@@ -255,7 +248,7 @@ public class Main {
                 }
                 System.out.println(controller.imprimirTablero());
             } while (!move);
-            String winner = controller.checkWinner();
+                String winner = controller.checkWinner();
             if (!winner.equals("")) {
                 System.out.println("[!] El ganador es: " + winner);
                 controller.restartState();

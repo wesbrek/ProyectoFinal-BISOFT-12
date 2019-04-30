@@ -7,8 +7,6 @@ public class Casilla {
     private int posX;
     private int posY;
     private String simbolo;
-    //private boolean color;
-
 
     public Casilla() {
         this.pieza = null;

@@ -3,8 +3,8 @@ package cr.ac.ucenfotec.bl.methodTemplate;
 import cr.ac.ucenfotec.bl.Casilla;
 import cr.ac.ucenfotec.bl.Cliente;
 
-public class TorreValidator extends PieceMovementComponent {
-    public TorreValidator(int xInicial, int yInicial, int xFinal, int yFinal, Casilla[][] casillas, Cliente cliente) {
+public class TorreMovementComponent extends PieceMovementComponent {
+    public TorreMovementComponent(int xInicial, int yInicial, int xFinal, int yFinal, Casilla[][] casillas, Cliente cliente) {
         super(xInicial, yInicial, xFinal, yFinal, casillas, cliente);
     }
 
