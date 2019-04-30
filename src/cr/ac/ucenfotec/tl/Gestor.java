@@ -165,10 +165,17 @@ public class Gestor {
         System.out.println("Fin de la partida");
     }
 
-    public int checkWinner(){
+    public String checkWinner(){
 		int winner = micliente.getTablero().checkWinner();
+        String winnerName = "";
 
-		return winner;
+        if (winner == 1) {
+            winnerName = micliente.getJugadores().get(0).getName();
+        } else if (winner == 2) {
+            winnerName = micliente.getJugadores().get(1).getName();
+        }
+
+		return winnerName;
 	}
 
 }
