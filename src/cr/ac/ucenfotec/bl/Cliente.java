@@ -119,4 +119,9 @@ public class Cliente {
          ISerializer serializer = SerializerFactory.getSerializer(tipo);
         return serializer.deserialize(partida);
     }
+  
+    public ITablero getTablero(){
+		return this.juego;
+	}
+
 }

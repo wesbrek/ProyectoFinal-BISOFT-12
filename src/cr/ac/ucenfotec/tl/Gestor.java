@@ -164,4 +164,11 @@ public class Gestor {
 
         System.out.println("Fin de la partida");
     }
+
+    public int checkWinner(){
+		int winner = micliente.getTablero().checkWinner();
+
+		return winner;
+	}
+
 }
