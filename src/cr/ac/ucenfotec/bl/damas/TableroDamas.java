@@ -378,6 +378,11 @@ public class TableroDamas implements ITablero {
 
         boolean capture = false;
 
+        if(x - 1 < 0 || y + 1 == 10){
+            return capture;
+        }
+
+
         if(getPieza(x - 1, y + 1) == null){
             return capture;
         }
@@ -401,6 +406,10 @@ public class TableroDamas implements ITablero {
 
     private boolean whiteCaptureRight(int x, int y, int xFinal, int yFinal){
 	    boolean capture = false;
+
+        if(x + 1 == 10 || y + 1 == 10){
+            return capture;
+        }
 
         if (getPieza(x + 1, y + 1) == null){
             return capture;
@@ -426,6 +435,10 @@ public class TableroDamas implements ITablero {
     private boolean blackCaptureLeft(int x, int y, int xFinal, int yFinal){
 	    boolean capture = false;
 
+        if(x - 1 < 0 || y - 1 < 0){
+            return capture;
+        }
+
 	    if(getPieza(x - 1, y - 1) == null){
 	        return capture;
         }
@@ -450,6 +463,10 @@ public class TableroDamas implements ITablero {
     private boolean blackCaptureRight(int x, int y, int xFinal, int yFinal){
 
 	    boolean capture = false;
+
+        if(x + 1 == 10 || y - 1 < 0){
+            return capture;
+        }
 
 	    if(getPieza(x + 1, y - 1) == null ){
 	        return capture;
@@ -525,6 +542,11 @@ public class TableroDamas implements ITablero {
     private boolean whiteContinueLeft(int xFinal, int yFinal){
         boolean contin = false;
 
+
+        if(xFinal - 1 < 0 || yFinal + 1 == 10){
+            return contin;
+        }
+
         if(getPieza(xFinal - 1, yFinal + 1) == null){
             return contin;
         }
@@ -548,6 +570,10 @@ public class TableroDamas implements ITablero {
     private boolean blackContinueRight(int xFinal, int yFinal){
 	    boolean contin = false;
 
+        if(xFinal + 1 == 10 || yFinal - 1 < 0){
+            return contin;
+        }
+
         if(getPieza(xFinal + 1, yFinal - 1) == null){
             return contin;
         }
@@ -570,6 +596,10 @@ public class TableroDamas implements ITablero {
 
     private boolean blackContinueLeft(int xFinal, int yFinal){
         boolean contin = false;
+
+        if(xFinal - 1 < 0 || yFinal - 1 < 0){
+            return contin;
+        }
 
         if(getPieza(xFinal - 1, yFinal - 1) == null){
             return contin;
