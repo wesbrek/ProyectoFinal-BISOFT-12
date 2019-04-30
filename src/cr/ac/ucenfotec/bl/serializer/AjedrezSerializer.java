@@ -23,4 +23,27 @@ public class AjedrezSerializer implements ISerializer{
         }
         return output.toString();
     }
+
+    @Override
+    public ArrayList<Movimiento> deserialize(String partida) {
+        String[] temp = partida.split(" ");
+        ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
+        for (String e: temp) {
+            if(!e.contains(".")) {
+                movimientos.add(stringToMovimiento(e));
+            }
+        }
+
+        return movimientos;
+    }
+
+    private Movimiento stringToMovimiento(String e) {
+        String moveFrom = "";
+        String moveTo = "";
+
+        moveFrom = e.substring(1, 3);
+        moveTo = e.substring(3, 5);
+
+        return new Movimiento(moveFrom, moveTo);
+    }
 }

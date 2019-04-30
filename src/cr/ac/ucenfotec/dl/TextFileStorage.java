@@ -41,8 +41,8 @@ public class TextFileStorage {
         save(data, GO);
     }
 
-    public ArrayList<String> load(File file) {
-        ArrayList<String> objetos = new ArrayList<String>();
+    public String load(File file) {
+        String output = "";
 
         try {
             FileReader reader = new FileReader(file);
@@ -50,12 +50,24 @@ public class TextFileStorage {
             String datos;
 
             while((datos = buffer.readLine()) != null) {
-                objetos.add(datos);
+                output += datos;
             }
             reader.close();
         } catch(IOException e) {
             e.printStackTrace();
         }
-        return objetos;
+        return output;
+    }
+
+    public String loadAjedrez() {
+        return load(AJEDREZ);
+    }
+
+    public String loadGo() {
+        return load(GO);
+    }
+
+    public String loadDamas() {
+        return load(DAMAS);
     }
 }

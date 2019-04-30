@@ -27,6 +27,6 @@ public class Movimiento {
 
     @Override
     public String toString() {
-        return moveFrom + "-" + moveTo;
+        return moveFrom + moveTo;
     }
 }

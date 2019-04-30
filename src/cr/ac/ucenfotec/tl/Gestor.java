@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cr.ac.ucenfotec.bl.Cliente;
 import cr.ac.ucenfotec.bl.Jugador;
 import cr.ac.ucenfotec.bl.Jugador.JugadorBuilder;
+import cr.ac.ucenfotec.bl.Movimiento;
 import cr.ac.ucenfotec.bl.tablero.ITablero;
 import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
@@ -127,9 +128,47 @@ public class Gestor {
         }
     }
 
+    public void loadGame(TipoJuego tipo){
+	    crearTablero(tipo);
+        System.out.println(imprimirTablero() + '\n');
+
+        int contadorTurnos = 1;
+
+        TextFileStorage tfe = new TextFileStorage();
+        String partida = "";
+
+        switch (tipo){
+            case AJEDREZ:
+                partida = tfe.loadAjedrez();
+                break;
+            case GO:
+                partida = tfe.loadGo();
+                break;
+            case DAMAS:
+                partida = tfe.loadDamas();
+                break;
+        }
+
+        ArrayList<Movimiento> movimientos = micliente.loadGame(tipo, partida);
+
+        for (Movimiento e : movimientos) {
+            nextTurn();
+            moverPieza(e.toString());
+            if(contadorTurnos % 2 != 0)
+                System.out.println("Jugador blanco: " + e);
+            else
+                System.out.println("Jugador negro: " + e);
+            contadorTurnos++;
+            System.out.println(imprimirTablero() + '\n');;
+        }
+
+        System.out.println("Fin de la partida");
+    }
+
     public int checkWinner(){
 		int winner = micliente.getTablero().checkWinner();
 
 		return winner;
 	}
+
 }
