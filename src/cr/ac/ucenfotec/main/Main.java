@@ -243,6 +243,11 @@ public class Main {
                 }
                 System.out.println(controller.imprimirTablero());
             } while (!move);
+            String winner = controller.checkWinner();
+            if (!winner.equals("")) {
+                System.out.println("[!] El ganador es: " + winner);
+                // Reiniciar partida
+            }
             opcionesJuego(juego);
 
         }
