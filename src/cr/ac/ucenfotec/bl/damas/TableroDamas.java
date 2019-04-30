@@ -873,10 +873,12 @@ public class TableroDamas implements ITablero {
         }
 
 	    if(j1 > 0 && j2 == 0){
+	        j1 = 1;
 	       return j1;
         }
 
 	    if(j1 == 0 && j2 > 0){
+	        j2 = 2;
 	        return j2;
         }
 
