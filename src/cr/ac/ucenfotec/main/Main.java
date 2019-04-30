@@ -136,7 +136,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    // reproducirJuego();
+                     reproducirJuego(juego);
                     break;
                 case 0:
                     controller.restartState();
@@ -145,6 +145,12 @@ public class Main {
                 default:
                     out.println("Opción incorrecta.");
             }
+        }
+
+        public static void reproducirJuego(TipoJuego juego) throws IOException{
+            controller.loadGame(juego);
+            System.out.println("Partida cargada con exito");
+            opcionesJuego(juego);
         }
 
         public static void empezarDamas () throws IOException {
@@ -194,7 +200,7 @@ public class Main {
                     moverPieza(juego);
                     break;
                 case 2:
-                    // rendirse();
+                    surrender();
                     break;
                 case 3:
                     //   reiniciarTablero();
@@ -207,6 +213,12 @@ public class Main {
                 default:
                     out.println("Opcion incorrecta");
             }
+        }
+
+        public static void surrender() throws IOException{
+            System.out.println("Ha ganado el jugador " + controller.nextTurn());
+            controller.restartState();
+            mostrarMenu();
         }
 
         public static void saveGame(TipoJuego juego) throws IOException {
