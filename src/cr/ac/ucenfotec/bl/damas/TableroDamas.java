@@ -90,25 +90,32 @@ public class TableroDamas implements ITablero {
     public boolean moverPieza(int x, int y, int xFinal, int yFinal, Cliente cliente) {
 	    boolean valExist = validarPieza(x,y,xFinal,yFinal);
         boolean valCapture = false;
-	    boolean valNormalMov = getPieza(x,y).validarMovimiento(x,y,xFinal,yFinal,cliente);
+        boolean valNormalMov = false;
+        if(getPieza(x,y) != null){
+            valNormalMov = getPieza(x,y).validarMovimiento(x,y,xFinal,yFinal,cliente);
+        }
+
         boolean valCrowned = false;
         boolean normalMoveCrowned = false;
         boolean normalCaptureCrowned = false;
         boolean val = false;
 
-        if(getPieza(x,y).getMejora() == true && valExist == false){
-             normalMoveCrowned = validarNormalMoveCrowned(x,y,xFinal,yFinal);
-            if(normalMoveCrowned == false){
-                valCrowned = moveCrowned(x,y,xFinal,yFinal, cliente);
+        if(getPieza(x,y) != null) {
+            if (getPieza(x, y).getMejora() == true && valExist == false) {
+                normalMoveCrowned = validarNormalMoveCrowned(x, y, xFinal, yFinal);
+                if (normalMoveCrowned == false) {
+                    valCrowned = moveCrowned(x, y, xFinal, yFinal, cliente);
+                }
+            }
+
+            if(getPieza(x,y).getMejora() == true && valCrowned == false && normalMoveCrowned ==false && valExist == false){
+                normalCaptureCrowned = normalCaptureCrowned(x,y,xFinal,yFinal, cliente);
+                if(normalCaptureCrowned == true){
+                    val = true;
+                }
             }
         }
 
-        if(getPieza(x,y).getMejora() == true && valCrowned == false && normalMoveCrowned ==false && valExist == false){
-            normalCaptureCrowned = normalCaptureCrowned(x,y,xFinal,yFinal, cliente);
-            if(normalCaptureCrowned == true){
-                val = true;
-            }
-        }
 
         if (valNormalMov == true && valCrowned == false && valExist == false || normalMoveCrowned == true && valExist == false) {
             val = true;
