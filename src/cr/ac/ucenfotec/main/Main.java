@@ -173,6 +173,7 @@ public class Main {
                 out.println("1. Mover pieza");
                 out.println("2. Rendirse");
                 out.println("3. Reiniciar");
+                out.println("4. Guardar");
                 out.println("0. Volver");
                 out.println("Digite la opcion");
                 opcion = Integer.parseInt(in.readLine());
@@ -198,6 +199,8 @@ public class Main {
                 case 3:
                     //   reiniciarTablero();
                     break;
+                case 4:
+                    controller.saveGame();
                 case 0:
                     play(juego);
                     break;
