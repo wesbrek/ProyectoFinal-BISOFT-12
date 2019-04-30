@@ -203,7 +203,7 @@ public class Main {
                     surrender();
                     break;
                 case 3:
-                    //   reiniciarTablero();
+                    restartGame(juego);
                     break;
                 case 4:
                     saveGame(juego);
@@ -214,6 +214,18 @@ public class Main {
                     out.println("Opcion incorrecta");
             }
         }
+
+        public static void restartGame(TipoJuego juego) throws IOException{
+
+            System.out.println("Juego reiniciado");
+            if (juego == TipoJuego.AJEDREZ) {
+            empezarAjerdrez();
+             } else if (juego == TipoJuego.DAMAS) {
+            empezarDamas();
+            } else if (juego == TipoJuego.GO) {
+            empezarGo();
+            }
+    }
 
         public static void surrender() throws IOException{
             System.out.println("Ha ganado el jugador " + controller.nextTurn());
@@ -246,7 +258,8 @@ public class Main {
             String winner = controller.checkWinner();
             if (!winner.equals("")) {
                 System.out.println("[!] El ganador es: " + winner);
-                // Reiniciar partida
+                controller.restartState();
+                restartGame(juego);
             }
             opcionesJuego(juego);
 
