@@ -200,13 +200,19 @@ public class Main {
                     //   reiniciarTablero();
                     break;
                 case 4:
-                    controller.saveGame();
+                    saveGame(juego);
                 case 0:
                     play(juego);
                     break;
                 default:
                     out.println("Opcion incorrecta");
             }
+        }
+
+        public static void saveGame(TipoJuego juego) throws IOException {
+            controller.saveGame();
+            System.out.println("Partida correctamente guardada");
+            opcionesJuego(juego);
         }
 
 
