@@ -9,17 +9,17 @@ public class PieceMovementFactory {
                                                       int xFinal, int yFinal, Cliente cliente){
         switch (tipo){
             case PEON:
-                return new PeonValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new PeonMovementComponent(x, y, xFinal, yFinal, casillas, cliente);
             case ALFIL:
-                return new AlfilValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new AlfilMovementComponent(x, y, xFinal, yFinal, casillas, cliente);
             case TORRE:
-                return new TorreValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new TorreMovementComponent(x, y, xFinal, yFinal, casillas, cliente);
             case CABALLO:
-                return new CaballoValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new CaballoMovementComponent(x, y, xFinal, yFinal, casillas, cliente);
             case REINA:
-                return new ReinaValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new ReinaMovementComponent(x, y, xFinal, yFinal, casillas, cliente);
             case REY:
-                return new ReyValidator(x, y, xFinal, yFinal, casillas, cliente);
+                return new ReyMovementComponent(x, y, xFinal, yFinal, casillas, cliente);
             default:
                 throw new RuntimeException("Not implemented");
         }

@@ -11,8 +11,6 @@ import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 import cr.ac.ucenfotec.bl.tablero.TableroFactory;
 import cr.ac.ucenfotec.bl.tablero.TipoJuego;
 import cr.ac.ucenfotec.dl.TextFileStorage;
-import cr.ac.ucenfotec.state.State;
-import cr.ac.ucenfotec.state.TurnPlayerOne;
 
 public class Gestor {
 	static Cliente micliente = Cliente.getInstance();
@@ -22,9 +20,13 @@ public class Gestor {
 		Jugador j1;
 		Jugador j2;
 		JugadorBuilder builder1 = new JugadorBuilder();
-		builder1.name(name1).password(pass1).turn(true);
+		builder1.withName(name1)
+                .withPassword(pass1)
+                .withTurn(true);
 		JugadorBuilder builder2 = new JugadorBuilder();
-		builder2.name(name2).password(pass2).turn(false);
+		builder2.withName(name2)
+                .withPassword(pass2)
+                .withTurn(false);
 		j1 = builder1.build();
 		j2 = builder2.build();
 		mijugadores.add(j1);
@@ -113,7 +115,6 @@ public class Gestor {
 	}
 
 	public void saveGame(){
-
         TextFileStorage tfe = new TextFileStorage();
         switch (micliente.getTipoJuego()){
             case AJEDREZ:
@@ -128,9 +129,11 @@ public class Gestor {
         }
     }
 
-    public void loadGame(TipoJuego tipo){
+    public String loadGame(TipoJuego tipo){
+	    String output = "";
+
 	    crearTablero(tipo);
-        System.out.println(imprimirTablero() + '\n');
+	    output += imprimirTablero() + '\n';
 
         int contadorTurnos = 1;
 
@@ -155,14 +158,14 @@ public class Gestor {
             nextTurn();
             moverPieza(e.toString());
             if(contadorTurnos % 2 != 0)
-                System.out.println("Jugador blanco: " + e);
+                output += "Jugador blanco: " + e;
             else
-                System.out.println("Jugador negro: " + e);
+                output += "Jugador negro: " + e;
             contadorTurnos++;
-            System.out.println(imprimirTablero() + '\n');;
+            output += imprimirTablero() + '\n';
         }
 
-        System.out.println("Fin de la partida");
+        return output;
     }
 
     public String checkWinner(){

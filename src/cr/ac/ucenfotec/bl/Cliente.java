@@ -41,13 +41,7 @@ public class Cliente {
         juego = TableroFactory.getTablero(tipoJuego);
         this.tipoJuego = tipoJuego;
 	}
-	
-	public void registrarJugador(String name, String password) {
-		//Validar que el jugador no exista
-	//	Jugador tmpJugador = new Jugador(name, password);
-		//jugadores.add(tmpJugador);
-	}
-	
+
 	public boolean validarJugador(String pass) {
 		for(Jugador x : jugadores) {
 			if(x.getPassword().equals(pass))
@@ -116,7 +110,7 @@ public class Cliente {
     }
 
     public ArrayList<Movimiento> loadGame(TipoJuego tipo, String partida) {
-         ISerializer serializer = SerializerFactory.getSerializer(tipo);
+	    ISerializer serializer = SerializerFactory.getSerializer(tipo);
         return serializer.deserialize(partida);
     }
   

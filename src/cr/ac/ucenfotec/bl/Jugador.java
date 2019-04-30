@@ -1,7 +1,5 @@
 package cr.ac.ucenfotec.bl;
 
-import cr.ac.ucenfotec.state.State;
-
 public class Jugador {
 	
 	private final String name;
@@ -55,17 +53,17 @@ public class Jugador {
 
 		}
 
-		public JugadorBuilder name(String _name){
+		public JugadorBuilder withName(String _name){
 			this.name = _name;
 			return this;
 		}
 
-		public JugadorBuilder password(String _pass){
+		public JugadorBuilder withPassword(String _pass){
 			this.password = _pass;
 			return this;
 		}
 
-		public JugadorBuilder turn(boolean turn){
+		public JugadorBuilder withTurn(boolean turn){
 			this.turn = turn;
 			return this;
 		}

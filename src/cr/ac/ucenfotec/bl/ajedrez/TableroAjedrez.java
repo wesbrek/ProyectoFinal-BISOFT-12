@@ -18,7 +18,6 @@ import cr.ac.ucenfotec.bl.tablero.PosicionTablero;
 
 import static cr.ac.ucenfotec.bl.piezas.TipoPieza.PEON;
 
-@SuppressWarnings("Duplicates")
 public class TableroAjedrez implements ITablero {
     Casilla[][] casillas;
     private ArrayList<IPieza> piezas;
@@ -102,13 +101,40 @@ public class TableroAjedrez implements ITablero {
         PieceMovementComponent controller = PieceMovementFactory.getPieceType(tipoPieza, casillas, x, y,
                 xFinal, yFinal, cliente);
 
-        if(controller.moverPieza()){
-            movimientos.add(new Movimiento(casillas[x][y].getSimbolo() + PosicionTablero.values()[x] + (y+1),
-                    "" + PosicionTablero.values()[xFinal] + (yFinal+1)));
-            IPieza temp = casillas[x][y].getPieza();
-            casillas[x][y] = new Casilla();
-            casillas[xFinal][yFinal].setPieza(temp);
-            return true;
+	    if(!checkCheck(cliente)) {
+            if (controller.moverPieza()) {
+                movimientos.add(new Movimiento(casillas[x][y].getSimbolo() + PosicionTablero.values()[x] + (y + 1),
+                        "" + PosicionTablero.values()[xFinal] + (yFinal + 1)));
+                IPieza temp = casillas[x][y].getPieza();
+                casillas[x][y] = new Casilla();
+                casillas[xFinal][yFinal].setPieza(temp);
+                return true;
+            }
+        }
+        else{
+            if(controller.moverPieza()){
+                IPieza origen = casillas[x][y].getPieza();
+                IPieza destino = casillas[xFinal][yFinal].getPieza();
+
+                movimientos.add(new Movimiento(casillas[x][y].getSimbolo() + PosicionTablero.values()[x] + (y + 1),
+                        "" + PosicionTablero.values()[xFinal] + (yFinal + 1)));
+                casillas[x][y] = new Casilla();
+                casillas[xFinal][yFinal].setPieza(origen);
+
+                if(checkCheck(cliente)){
+                    movimientos.poll();
+
+                    casillas[x][y].setPieza(origen);
+                    if(destino == null)
+                        casillas[xFinal][yFinal] = new Casilla();
+                    else
+                        casillas[xFinal][yFinal].setPieza(destino);
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -175,6 +201,51 @@ public class TableroAjedrez implements ITablero {
         }
 
         return winner;
+    }
+
+    public boolean checkCheck(Cliente cliente){
+	    int xReyB = 0, yReyB = 0;
+	    int xReyN = 0, yReyN = 0;
+
+        for (int i = 0; i < casillas.length; i++){
+            for (int j = 0; j < casillas.length; j++){
+                if(casillas[i][j].getPieza() != null){
+                    if(casillas[i][j].getSimbolo().equalsIgnoreCase("K")) {
+                        if (casillas[i][j].getPieza().isColor()) {
+                            xReyB = i;
+                            yReyB = j;
+                        } else {
+                            xReyN = i;
+                            yReyN = j;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < casillas.length; i++){
+            for (int j = 0; j < casillas.length; j++) {
+                if(casillas[i][j].getPieza() != null){
+
+                    IPieza pieza = getPieza(i, j);
+                    TipoPieza tipoPieza = TipoPieza.valueOf(pieza.getClass().getSimpleName().toUpperCase());
+
+                    if(casillas[i][j].getPieza().isColor()) {
+                        PieceMovementComponent controller = PieceMovementFactory.getPieceType(tipoPieza, casillas, i, j,
+                                xReyN, yReyN, cliente);
+                        if(controller.moverPieza())
+                            return true;
+                    }
+                    if(!casillas[i][j].getPieza().isColor()) {
+                        PieceMovementComponent controller = PieceMovementFactory.getPieceType(tipoPieza, casillas, i, j,
+                                xReyB, yReyB, cliente);
+                        if(controller.moverPieza())
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static class Builder {

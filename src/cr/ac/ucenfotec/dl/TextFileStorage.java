@@ -1,7 +1,6 @@
 package cr.ac.ucenfotec.dl;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class TextFileStorage {
     private static final File DAMAS = new File("src/damas.pdn");

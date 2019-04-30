@@ -1,12 +1,8 @@
 package cr.ac.ucenfotec.state;
 
-
-
 import cr.ac.ucenfotec.bl.Cliente;
 
-
 public class TurnPlayerTwo implements State {
-	
 	private Cliente micliente;
 	
 	public TurnPlayerTwo(Cliente aThis) {
@@ -23,6 +19,4 @@ public class TurnPlayerTwo implements State {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 }
